@@ -1,3 +1,4 @@
+document.addEventListener('DOMContentLoaded', function(){ 
 var firstURL = window.location.pathname;
 var pageNumberData = 0;
 console.log(location.hash);
@@ -6,8 +7,11 @@ console.log(location.pathname);
 var historyTracker  = [];
 var renderPage = function(newURL){
   console.log(window.history);
+  var dashboard = document.getElementById('dashboard');
+  var pageToLoad = document.getElementById(newURL);
+  console.log(pageToLoad);
   //we are setting the innerhtml here, we would want it to be things based on buttons we click or url we visit
-  container.innerHTML ='<object type="text/html" data="html/'+newURL + '.html" ></object>' || "root";
+  container.innerHTML = pageToLoad.innerHTML || dashboard.innerHTML;
   //we are changing the links href to decide where we go!
   //nextPage.setAttribute("href", "page"+n);
 };
@@ -30,6 +34,7 @@ window.addEventListener('popstate', function(backButtonEvent){
 
 document.body.addEventListener('click', function(ev){
   ev.preventDefault(); //stops the link from executing
+  
   if (ev.target.nodeName == 'A'){
     if(ev.target.getAttribute('href') != '#null') {
     var fakeURL = ev.target.getAttribute('href');
@@ -41,3 +46,4 @@ document.body.addEventListener('click', function(ev){
 });
 
 
+});
