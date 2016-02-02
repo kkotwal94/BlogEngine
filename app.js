@@ -26,7 +26,7 @@ app.get('/search', function(req, res) {
 });
 
 
-app.get('/createposts', function(req, res) {
+app.get('/createpost', function(req, res) {
    res.sendFile(__dirname + '/index.html'); 
 });
 

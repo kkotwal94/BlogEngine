@@ -16,9 +16,184 @@ document.addEventListener('DOMContentLoaded', function(){
 	var header = document.getElementsByClassName('header');
 	var cdMainNav = document.getElementsByClassName('cd-main-nav');
 	var cdMainContent = document.getElementsByClassName('main-container');
-	var mainContent = document.getElementsByClassName('mai')
-
+	var mainContent = document.getElementsByClassName('main')
+	var pp = document.getElementById('pp');
+	var srh = document.getElementById('srh');
+	var cp = document.getElementById('cp');
+	var log = document.getElementById('log');
+	var ab = document.getElementById('ab');
+	var com = document.getElementById('com');
+	var edu = document.getElementById('edu');
+	var pol = document.getElementById('pol');
+	var art = document.getElementById('art');
+	var vg = document.getElementById('vg');
+	
+	
+	pp.addEventListener('click', function(event) {
+    	if(header[0].classList.contains('nav-is-visible')) { 	
+        	var movesOut = document.getElementsByClassName('moves-out');   
+    	    //console.log(movesOut[0]); movesOut[0].classList.remove('moves-out');  	
+    	    header[0].classList.toggle('nav-is-visible');
+    		cdMainNav[0].classList.toggle('nav-is-visible');
+    		cdMainContent[0].classList.toggle('nav-is-visible');
+		    
+		}
+		else {
+		header[0].classList.toggle('nav-is-visible');
+		cdMainNav[0].classList.toggle('nav-is-visible');
+		cdMainContent[0].classList.toggle('nav-is-visible');
+		}
+    });
+    
+    srh.addEventListener('click', function(event) {
+    	if(header[0].classList.contains('nav-is-visible')) { 	
+        	var movesOut = document.getElementsByClassName('moves-out');   
+    	    //console.log(movesOut[0]); movesOut[0].classList.remove('moves-out');  	
+    	    header[0].classList.toggle('nav-is-visible');
+    		cdMainNav[0].classList.toggle('nav-is-visible');
+    		cdMainContent[0].classList.toggle('nav-is-visible');
+		    
+		}
+		else {
+		header[0].classList.toggle('nav-is-visible');
+		cdMainNav[0].classList.toggle('nav-is-visible');
+		cdMainContent[0].classList.toggle('nav-is-visible');
+		}
+    });
+    
+    cp.addEventListener('click', function(event) {
+    	if(header[0].classList.contains('nav-is-visible')) { 	
+        	var movesOut = document.getElementsByClassName('moves-out');   
+    	    //console.log(movesOut[0]); movesOut[0].classList.remove('moves-out');  	
+    	    header[0].classList.toggle('nav-is-visible');
+    		cdMainNav[0].classList.toggle('nav-is-visible');
+    		cdMainContent[0].classList.toggle('nav-is-visible');
+		    
+		}
+		else {
+		header[0].classList.toggle('nav-is-visible');
+		cdMainNav[0].classList.toggle('nav-is-visible');
+		cdMainContent[0].classList.toggle('nav-is-visible');
+		}
+    });
+	
+	
+	log.addEventListener('click', function(event) {
+    	if(header[0].classList.contains('nav-is-visible')) { 	
+        	var movesOut = document.getElementsByClassName('moves-out');   
+    	    //console.log(movesOut[0]); movesOut[0].classList.remove('moves-out');  	
+    	    header[0].classList.toggle('nav-is-visible');
+    		cdMainNav[0].classList.toggle('nav-is-visible');
+    		cdMainContent[0].classList.toggle('nav-is-visible');
+		    
+		}
+		else {
+		header[0].classList.toggle('nav-is-visible');
+		cdMainNav[0].classList.toggle('nav-is-visible');
+		cdMainContent[0].classList.toggle('nav-is-visible');
+		}
+    });
+	
+	
+	ab.addEventListener('click', function(event) {
+    	if(header[0].classList.contains('nav-is-visible')) { 	
+        	var movesOut = document.getElementsByClassName('moves-out');   
+    	    //console.log(movesOut[0]); movesOut[0].classList.remove('moves-out');  	
+    	    header[0].classList.toggle('nav-is-visible');
+    		cdMainNav[0].classList.toggle('nav-is-visible');
+    		cdMainContent[0].classList.toggle('nav-is-visible');
+		    
+		}
+		else {
+		header[0].classList.toggle('nav-is-visible');
+		cdMainNav[0].classList.toggle('nav-is-visible');
+		cdMainContent[0].classList.toggle('nav-is-visible');
+		}
+    });
+    
+    com.addEventListener('click', function(event) {
+    	if(header[0].classList.contains('nav-is-visible')) { 	
+        	var movesOut = document.getElementsByClassName('moves-out');   
+    	    //console.log(movesOut[0]); movesOut[0].classList.remove('moves-out');  	
+    	    header[0].classList.toggle('nav-is-visible');
+    		cdMainNav[0].classList.toggle('nav-is-visible');
+    		cdMainContent[0].classList.toggle('nav-is-visible');
+		    
+		}
+		else {
+		header[0].classList.toggle('nav-is-visible');
+		cdMainNav[0].classList.toggle('nav-is-visible');
+		cdMainContent[0].classList.toggle('nav-is-visible');
+		}
+    });
+    
+    edu.addEventListener('click', function(event) {
+    	if(header[0].classList.contains('nav-is-visible')) { 	
+        	var movesOut = document.getElementsByClassName('moves-out');   
+    	    //console.log(movesOut[0]); movesOut[0].classList.remove('moves-out');  	
+    	    header[0].classList.toggle('nav-is-visible');
+    		cdMainNav[0].classList.toggle('nav-is-visible');
+    		cdMainContent[0].classList.toggle('nav-is-visible');
+		    
+		}
+		else {
+		header[0].classList.toggle('nav-is-visible');
+		cdMainNav[0].classList.toggle('nav-is-visible');
+		cdMainContent[0].classList.toggle('nav-is-visible');
+		}
+    });
+	
+	
+	pol.addEventListener('click', function(event) {
+    	if(header[0].classList.contains('nav-is-visible')) { 	
+        	var movesOut = document.getElementsByClassName('moves-out');   
+    	    //console.log(movesOut[0]); movesOut[0].classList.remove('moves-out');  	
+    	    header[0].classList.toggle('nav-is-visible');
+    		cdMainNav[0].classList.toggle('nav-is-visible');
+    		cdMainContent[0].classList.toggle('nav-is-visible');
+		    
+		}
+		else {
+		header[0].classList.toggle('nav-is-visible');
+		cdMainNav[0].classList.toggle('nav-is-visible');
+		cdMainContent[0].classList.toggle('nav-is-visible');
+		}
+    });
+    
+    
+    art.addEventListener('click', function(event) {
+    	if(header[0].classList.contains('nav-is-visible')) { 	
+        	var movesOut = document.getElementsByClassName('moves-out');   
+    	    //console.log(movesOut[0]); movesOut[0].classList.remove('moves-out');  	
+    	    header[0].classList.toggle('nav-is-visible');
+    		cdMainNav[0].classList.toggle('nav-is-visible');
+    		cdMainContent[0].classList.toggle('nav-is-visible');
+		    
+		}
+		else {
+		header[0].classList.toggle('nav-is-visible');
+		cdMainNav[0].classList.toggle('nav-is-visible');
+		cdMainContent[0].classList.toggle('nav-is-visible');
+		}
+    });
+    
+    vg.addEventListener('click', function(event) {
+    	if(header[0].classList.contains('nav-is-visible')) { 	
+        	var movesOut = document.getElementsByClassName('moves-out');   
+    	    //console.log(movesOut[0]); movesOut[0].classList.remove('moves-out');  	
+    	    header[0].classList.toggle('nav-is-visible');
+    		cdMainNav[0].classList.toggle('nav-is-visible');
+    		cdMainContent[0].classList.toggle('nav-is-visible');
+		    
+		}
+		else {
+		header[0].classList.toggle('nav-is-visible');
+		cdMainNav[0].classList.toggle('nav-is-visible');
+		cdMainContent[0].classList.toggle('nav-is-visible');
+		}
+    });
 	var subNavTrigger = document.getElementsByClassName('cd-subnav-trigger');
+    
     
     
 	 cdNavTrigger[0].addEventListener('click', function(event){
@@ -73,6 +248,7 @@ document.addEventListener('DOMContentLoaded', function(){
 		}
 	}
 
+	
     
 	function checkWindowWidth() {
 		var mq = window.getComputedStyle(document.querySelector('header'), '::before').getPropertyValue('content').replace(/"/g, '').replace(/'/g, "");
