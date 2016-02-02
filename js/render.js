@@ -95,7 +95,7 @@ firebaseref.onAuth(authDataCallback);
 
 var setUpFirebaseEvents = function() 
 {
-    listRef = new Firebase('https://dazzling-fire-8954.firebaseio.com/lists/sharedlist/items');
+    listRef = new Firebase('https://scorching-heat-6412.firebaseio.com/lists/sharedlist/items');
     $("#sharedlist").html('');
     listRef.off('child_added', childAddedFunction)
     listRef.on("child_added", childAddedFunction);
