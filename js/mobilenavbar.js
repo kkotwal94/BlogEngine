@@ -32,7 +32,6 @@ document.addEventListener('DOMContentLoaded', function(){
 	
 	pp.addEventListener('click', function(event) {
 		var screenSize = checkWindowWidth();
-		console.log(screenSize);
 		if(screenSize == false) {
     	if(header[0].classList.contains('nav-is-visible')) { 	
         	var movesOut = document.getElementsByClassName('moves-out');   
@@ -52,8 +51,7 @@ document.addEventListener('DOMContentLoaded', function(){
     
     	reg.addEventListener('click', function(event) {
 		var screenSize = checkWindowWidth();
-		console.log(screenSize);
-		if(screenSize == false) {
+			if(screenSize == false) {
     	if(header[0].classList.contains('nav-is-visible')) { 	
         	var movesOut = document.getElementsByClassName('moves-out');   
     	    //console.log(movesOut[0]); movesOut[0].classList.remove('moves-out');  	
@@ -71,6 +69,8 @@ document.addEventListener('DOMContentLoaded', function(){
     });
     
     srh.addEventListener('click', function(event) {
+    	var screenSize = checkWindowWidth();
+    		if(screenSize == false) {
     	if(header[0].classList.contains('nav-is-visible')) { 	
         	var movesOut = document.getElementsByClassName('moves-out');   
     	    //console.log(movesOut[0]); movesOut[0].classList.remove('moves-out');  	
@@ -83,10 +83,13 @@ document.addEventListener('DOMContentLoaded', function(){
 		header[0].classList.toggle('nav-is-visible');
 		cdMainNav[0].classList.toggle('nav-is-visible');
 		cdMainContent[0].classList.toggle('nav-is-visible');
+		}
 		}
     });
     
     cp.addEventListener('click', function(event) {
+    	var screenSize = checkWindowWidth();
+    	if(screenSize == false) {
     	if(header[0].classList.contains('nav-is-visible')) { 	
         	var movesOut = document.getElementsByClassName('moves-out');   
     	    //console.log(movesOut[0]); movesOut[0].classList.remove('moves-out');  	
@@ -99,11 +102,14 @@ document.addEventListener('DOMContentLoaded', function(){
 		header[0].classList.toggle('nav-is-visible');
 		cdMainNav[0].classList.toggle('nav-is-visible');
 		cdMainContent[0].classList.toggle('nav-is-visible');
+		}
 		}
     });
 	
 	
 	log.addEventListener('click', function(event) {
+		var screenSize = checkWindowWidth();
+    		if(screenSize == false) {
     	if(header[0].classList.contains('nav-is-visible')) { 	
         	var movesOut = document.getElementsByClassName('moves-out');   
     	    //console.log(movesOut[0]); movesOut[0].classList.remove('moves-out');  	
@@ -116,11 +122,14 @@ document.addEventListener('DOMContentLoaded', function(){
 		header[0].classList.toggle('nav-is-visible');
 		cdMainNav[0].classList.toggle('nav-is-visible');
 		cdMainContent[0].classList.toggle('nav-is-visible');
+		}
 		}
     });
 	
 	
 	ab.addEventListener('click', function(event) {
+		var screenSize = checkWindowWidth();
+    		if(screenSize == false) {
     	if(header[0].classList.contains('nav-is-visible')) { 	
         	var movesOut = document.getElementsByClassName('moves-out');   
     	    //console.log(movesOut[0]); movesOut[0].classList.remove('moves-out');  	
@@ -133,10 +142,13 @@ document.addEventListener('DOMContentLoaded', function(){
 		header[0].classList.toggle('nav-is-visible');
 		cdMainNav[0].classList.toggle('nav-is-visible');
 		cdMainContent[0].classList.toggle('nav-is-visible');
+		}
 		}
     });
     
     com.addEventListener('click', function(event) {
+    	var screenSize = checkWindowWidth();
+    		if(screenSize == false) {
     	if(header[0].classList.contains('nav-is-visible')) { 	
         	var movesOut = document.getElementsByClassName('moves-out');   
     	    //console.log(movesOut[0]); movesOut[0].classList.remove('moves-out');  	
@@ -149,10 +161,13 @@ document.addEventListener('DOMContentLoaded', function(){
 		header[0].classList.toggle('nav-is-visible');
 		cdMainNav[0].classList.toggle('nav-is-visible');
 		cdMainContent[0].classList.toggle('nav-is-visible');
+		}
 		}
     });
     
     edu.addEventListener('click', function(event) {
+    	var screenSize = checkWindowWidth();
+    	if(screenSize == false) {
     	if(header[0].classList.contains('nav-is-visible')) { 	
         	var movesOut = document.getElementsByClassName('moves-out');   
     	    //console.log(movesOut[0]); movesOut[0].classList.remove('moves-out');  	
@@ -165,11 +180,14 @@ document.addEventListener('DOMContentLoaded', function(){
 		header[0].classList.toggle('nav-is-visible');
 		cdMainNav[0].classList.toggle('nav-is-visible');
 		cdMainContent[0].classList.toggle('nav-is-visible');
+		}
 		}
     });
 	
 	
 	pol.addEventListener('click', function(event) {
+		var screenSize = checkWindowWidth();
+    		if(screenSize == false) {
     	if(header[0].classList.contains('nav-is-visible')) { 	
         	var movesOut = document.getElementsByClassName('moves-out');   
     	    //console.log(movesOut[0]); movesOut[0].classList.remove('moves-out');  	
@@ -182,11 +200,14 @@ document.addEventListener('DOMContentLoaded', function(){
 		header[0].classList.toggle('nav-is-visible');
 		cdMainNav[0].classList.toggle('nav-is-visible');
 		cdMainContent[0].classList.toggle('nav-is-visible');
+		}
 		}
     });
     
     
     art.addEventListener('click', function(event) {
+    	var screenSize = checkWindowWidth();
+    	if(screenSize == false) {
     	if(header[0].classList.contains('nav-is-visible')) { 	
         	var movesOut = document.getElementsByClassName('moves-out');   
     	    //console.log(movesOut[0]); movesOut[0].classList.remove('moves-out');  	
@@ -199,10 +220,13 @@ document.addEventListener('DOMContentLoaded', function(){
 		header[0].classList.toggle('nav-is-visible');
 		cdMainNav[0].classList.toggle('nav-is-visible');
 		cdMainContent[0].classList.toggle('nav-is-visible');
+		}
 		}
     });
     
     vg.addEventListener('click', function(event) {
+    	var screenSize = checkWindowWidth();
+    		if(screenSize == false) {
     	if(header[0].classList.contains('nav-is-visible')) { 	
         	var movesOut = document.getElementsByClassName('moves-out');   
     	    //console.log(movesOut[0]); movesOut[0].classList.remove('moves-out');  	
@@ -215,6 +239,7 @@ document.addEventListener('DOMContentLoaded', function(){
 		header[0].classList.toggle('nav-is-visible');
 		cdMainNav[0].classList.toggle('nav-is-visible');
 		cdMainContent[0].classList.toggle('nav-is-visible');
+		}
 		}
     });
 	var subNavTrigger = document.getElementsByClassName('cd-subnav-trigger');
