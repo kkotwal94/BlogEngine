@@ -16,14 +16,22 @@ document.addEventListener('DOMContentLoaded', function(){
 	var header = document.getElementsByClassName('header');
 	var cdMainNav = document.getElementsByClassName('cd-main-nav');
 	var cdMainContent = document.getElementsByClassName('cd-main-content');
-	var movesOut = document.getElementsByClassName('moves-out');
+
 	var subNavTrigger = document.getElementsByClassName('cd-subnav-trigger');
     
     
 	 cdNavTrigger[0].addEventListener('click', function(event){
 		event.preventDefault();
 		console.log("hit trigger");
-		if(header[0].classList.contains('nav-is-visible')) {   movesOut[0].classList.remove('moves-out'); };
+		
+		if(header[0].classList.contains('nav-is-visible')) { 	
+        	var movesOut = document.getElementsByClassName('moves-out');   
+    	    console.log(movesOut[0]); movesOut[0].classList.remove('moves-out');  	
+    	    header[0].classList.toggle('nav-is-visible');
+    		cdMainNav[0].classList.toggle('nav-is-visible');
+    		cdMainContent[0].classList.toggle('nav-is-visible');
+		    
+		};
 		
 		header[0].classList.toggle('nav-is-visible');
 		cdMainNav[0].classList.toggle('nav-is-visible');
