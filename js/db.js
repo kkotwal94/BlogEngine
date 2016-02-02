@@ -51,6 +51,11 @@ var authDataCallback = function(authData)
 //register a callback for the change in Authentication Status
 firebaseref.onAuth(authDataCallback);
 
-var div = document.getElementById('login-btn').addEventListener("click",loginButton);
-div = document.getElementById('register-btn').addEventListener("click",registerButton);
-
+var div = document.getElementById('login-btn');
+div.addEventListener("click",loginButton);
+console.log(div);
+console.log(loginButton);
+div = document.getElementById('register-btn');
+div.addEventListener("click",registerButton);
+console.log(div);
+console.log(registerButton);
