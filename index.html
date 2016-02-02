@@ -32,6 +32,7 @@
 				<li><a  href="#search">Search</a></li>
 				<li><a  href="#createpost">Write Blog Post</a></li>
 				<li><a  href="#login">Login</a></li>
+				<li><a  href="#register">Register</a></li>
 				<li><a  href="#about">About</a></li>
 			
 				<li>
@@ -107,7 +108,21 @@
     </div>
     
      <div id ="login" class="isVisible">
-    	<p>You are on <span id="pnum">Login page cuz</span></p>
+    	<div class="container tab default" id="login">
+            <form class="form-signin" role="form">
+                <h2 class="form-signin-heading">
+                    <em class="stackhive-marker"></em>Login to your account
+                </h2>
+                <hr>
+                <input type="email" class="form-control" placeholder="Email address" required="" autofocus="" id="login-email"><input type="password" class="form-control" placeholder="Password"
+                required="" id="login-password">
+                <button class="btn btn-primary" type="button" id="login-btn">
+                    Login
+                </button>
+                <hr>
+                <div class="status alert alert-info hide"></div>
+            </form>
+        </div>
     </div>
     
      <div id ="politics" class="isVisible">
@@ -115,7 +130,21 @@
     </div>
     
      <div id ="register" class="isVisible">
-    	<p>You are on <span id="pnum">Register page cuz</span></p>
+    	 <div class="container tab hide" id="register">
+            <form class="form-signin" role="form">
+                <h2 class="form-signin-heading">
+                    Register a new account
+                </h2>
+                <hr>
+                <input type="text" class="form-control" placeholder="Your Name" required="" autofocus="" id="name"><input type="email" class="form-control" placeholder="Email address" required=""
+                autofocus="" id="email"><input type="password" class="form-control" placeholder="Password" required="" id="password">
+                <button class="btn btn-primary" type="button" id="register-btn">
+                    Sign Me Up!
+                </button>
+            </form>
+            <hr>
+            <div class="status alert alert-info hide"></div>
+        </div>
     </div>
     
      <div id ="search" class="isVisible">
@@ -126,9 +155,11 @@
     
     </main>
     
-    <!-- Include js files here! -->
+    <!-- Include js files here! --> 
+    <script type="text/javascript" src="https://cdn.firebase.com/js/client/2.2.3/firebase.js"></script>	
     <script src="js/render.js"></script>
     <script src="js/mobilenavbar.js"></script>
+    <script src="js/db.js"></script>
     
 
 </body>

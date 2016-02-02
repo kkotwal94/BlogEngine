@@ -35,6 +35,10 @@ app.get('/login', function(req, res) {
    res.sendFile(__dirname + '/index.html'); 
 });
 
+app.get('/register', function(req, res) {
+   res.sendFile(__dirname + '/index.html'); 
+});
+
 
 app.get('/popularposts', function(req, res) {
    res.sendFile(__dirname + '/index.html'); 
