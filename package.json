@@ -1,0 +1,24 @@
+{
+  "name": "blogengine",
+  "version": "1.0.0",
+  "description": "A blog engine in vanilla javascript",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kkotwal94/BlogEngine.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kkotwal94/BlogEngine/issues"
+  },
+  
+  "dependencies": {
+     "express": "~4.10.2"
+  },
+  "homepage": "https://github.com/kkotwal94/BlogEngine#readme"
+}
