@@ -573,3 +573,7 @@ header::before {
     padding-top: 80px;
   }
 }
+
+.hidden{
+  display: none!important;
+}

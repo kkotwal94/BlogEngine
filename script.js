@@ -31,3 +31,99 @@ document.body.addEventListener('click', function(ev){
 });
 
 
+var firebaseref = new Firebase("https://scorching-heat-6412.firebaseio.com/");
+
+$("#login-btn").on('click', function() 
+{
+        var email = $("#login-email").val();
+        var password = $("#login-password").val();
+        firebaseref.authWithPassword({
+            email: email,
+            password: password
+        }, 
+        function(error, authData) {
+            if (error) {
+                console.log("Login Failed!", error);
+            } else {
+                console.log("Authenticated successfully with payload:", authData);
+            }
+        });
+});
+
+$("#signup-btn").on('click', function() 
+{
+	var email = $("#email").val();
+	var password = $("#password").val();
+	firebaseref.createUser({
+		email: email,
+		password: password
+	},function(error, userData) {
+		if (error) {
+			console.log("Error creating user:", error);
+		} 
+		else {
+			console.log("Successfully created user account with uid:", userData.uid);
+			//additionally, you can log the user in right after the signup is successful and add more data about the user like name etc.              
+		}
+	});
+});
+
+//Callback for Auth Changes
+var authDataCallback = function(authData) 
+{
+        //authData is the object sent by Firebase in the callback.
+        if (authData) {
+            console.log("User " + authData.uid + " is logged in");
+        } 
+        else {
+            console.log("User is logged out");
+        }
+}
+
+//register a callback for the change in Authentication Status
+firebaseref.onAuth(authDataCallback);
+
+var setUpFirebaseEvents = function() 
+{
+    listRef = new Firebase('https://dazzling-fire-8954.firebaseio.com/lists/sharedlist/items');
+    $("#sharedlist").html('');
+    listRef.off('child_added', childAddedFunction)
+    listRef.on("child_added", childAddedFunction);
+
+    listRef.off('child_changed', childChangedFunction);
+    listRef.on('child_changed', childChangedFunction);
+
+    listRef.off('child_removed', childRemovedFunction);
+    listRef.on('child_removed', childRemovedFunction);
+}
+var authDataCallback = function(authData) 
+{
+    console.log("authCallback Event is called from onAuth Event");
+    if (authData) {
+        console.log("User " + authData.uid + " is logged in with " + authData.provider);
+        setUpFirebaseEvents();
+
+    } 
+    else 
+    {
+        console.log("User is logged out");
+    }
+}
+var childAddedFunction = function(snapshot) {
+    var key = snapshot.key(); //return the key for the item
+    var listItem = snapshot.val(); //returns the value of the item as JSON
+    console.log("Key - " + key + " has been added");
+    buildNewListItem(listItem, key); //adds the new item to the list
+    $("#lists .status").fadeIn(400).html('New item added!')
+}
+var childChangedFunction = function(snapshot) {
+    var listItem = snapshot.val();
+    var key = snapshot.key();
+    console.log("Key - " + key + " has been changed");
+    updateListItem(listItem, key); //updates the position of the item
+}
+var childRemovedFunction = function(snapshot) {
+    var key = snapshot.key();
+    removeListItem(key); //remove the list item
+    console.log('Child Removed');
+}
