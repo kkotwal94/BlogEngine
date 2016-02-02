@@ -1,7 +1,5 @@
 /* -------------------------------- 
-
 Primary style
-
 -------------------------------- */
 *, *::after, *::before {
   -webkit-box-sizing: border-box;
@@ -29,9 +27,7 @@ a {
 }
 
 /* -------------------------------- 
-
 Main Components 
-
 -------------------------------- */
 header {
   position: fixed;
