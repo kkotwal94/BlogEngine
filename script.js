@@ -1,9 +1,12 @@
 var firstURL = window.location.pathname;
 var pageNumberData = 0;
-
+console.log(location.hash);
+console.log(location.pathname);
 var renderPageNumber = function(n){
-  pnum.innerHTML = n || "root";
-  nextPage.setAttribute("href", "page"+n);
+  //We are setting the innerhtml here, we would want it to be things based on buttons we click or url we visit
+  //pnum.innerHTML = n || "root";
+  //we are changing the links href to decide where we go!
+  //nextPage.setAttribute("href", "page"+n);
 };
 
 var changePageTo = function(newURL){
@@ -26,3 +29,5 @@ document.body.addEventListener('click', function(ev){
     changePageTo(fakeURL);
   }
 });
+
+
