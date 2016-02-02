@@ -1,7 +1,5 @@
 /* -------------------------------- 
-
 Primary style
-
 -------------------------------- */
 *, *::after, *::before {
   -webkit-box-sizing: border-box;
@@ -18,6 +16,9 @@ body {
   font-family: "PT Sans", sans-serif;
   color: #33414a;
   background-color: #f2f2f2;
+  margin: 0;
+  //height: 100vh;
+  overflow:hidden;
 }
 
 a {
@@ -26,9 +27,7 @@ a {
 }
 
 /* -------------------------------- 
-
 Main Components 
-
 -------------------------------- */
 header {
   position: fixed;
@@ -196,7 +195,7 @@ header::before {
   z-index: 1;
   top: 0;
   overflow: hidden;
-  right: 0;
+  right: -260;
   width: 260px;
   height: 100vh;
   /*overflow: auto;*/
@@ -314,7 +313,7 @@ header::before {
     visibility: visible;
     width: 100%;
     height: 80px;
-    /*line-height: 80px;*/
+    line-height: 80px;
     /* padding left = logo size + logo left position*/
     padding: 0 5% 0 calc(5% + 124px);
     background: transparent;
@@ -574,6 +573,14 @@ header::before {
   }
 }
 
-.hidden{
-  display: none!important;
+
+#container {
+  width: 100%;
+  //height: 100%;
+}
+
+
+object {
+  height: 100%;
+  width: 100%;
 }

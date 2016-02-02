@@ -1,0 +1,21 @@
+
+#coverImage {
+    width:100%;
+    background-image: url("https://blogs.montclair.edu/cwe/files/2013/06/quotes-silence-writing-hd-wallpapers.jpg");
+    background-size: 100%;
+    height: 70%;
+    
+}
+
+
+#container {
+  width: 100%;
+  //height: 100%;
+  overflow: hidden;
+}
+
+body {
+    margin: 0;
+    overflow: auto;
+    
+}
