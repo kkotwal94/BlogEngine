@@ -11,20 +11,22 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/dashboard.css">
     <link rel="stylesheet" href="css/card.css">
+    <!--
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css">
     <link rel="stylesheet" href="node_modules/medium-editor/dist/css/medium-editor.css">
     <link rel="stylesheet" href="node_modules/medium-editor/dist/css/themes/default.css" id="medium-editor-theme">
-
+	-->
+	
+	<link href="node_modules/alloyeditor/dist/alloy-editor/assets/alloy-editor-ocean-min.css" rel="stylesheet">
+	
     
     
     
     
     
-    <script type="text/javascript" charset="utf-8" src="js/pageentry.js">
+    <script type="text/javascript" charset="utf-8" src="js/pageentry.js"></script>
     
-    </script>
-    
-    
+     <script src="node_modules/alloyeditor/dist/alloy-editor/alloy-editor-all-min.js"></script>
     
 </head>
 <body>
@@ -36,7 +38,7 @@
     <header class = "header">
 		<div class="cd-logo"><a href="#/"><img src="images/cd-logo.svg" alt="Logo"></a></div>
 
-		<nav class="cd-main-nav-wrapper">
+		<nav class="cd-main-nav-wrapper" id="nav">
 			<ul class="cd-main-nav">
 				<li><a  id="pp" href="#popularposts">High Rated Blogs</a></li>
 				<li><a id="srh" href="#search">Search</a></li>
@@ -72,12 +74,12 @@
     
     </div>
     
-    <div id ="popularposts" class="isVisible">
+    <div id ="popularposts" class="notVisible">
     	<p>You are on page view popular Post PAGE cuzsssss ahahahahahh pewpw pepw pe pewp wppads dasfasfas fa afs afas</p>
     </div>
     
     
-    <div id="dashboard" class="isVisible">
+    <div id="dashboard" class="notVisible">
  		
 	    	
 	    	
@@ -183,31 +185,35 @@
     </div>
     
     
-    <div id ="createpost" class="isVisible">
-    	<textarea class="editable medium-editor-textarea">&lt;p&gt;Textarea is now supported&lt;/p&gt;</textarea>
+    <div id ="createpost" class="notVisible">
+	   <div class="contentEditing" id="editable" contenteditable="true">
+    	<p id="Title" class="editable">Enter a title here!</p>
+    	
+    	<p id="Body" class="editable">Change the body here</p>
+   		</div>
     </div>
     
-    <div id ="comedy" class="isVisible">
+    <div id ="comedy" class="notVisible">
     	 <p>You are on <span id="pnum">Comedy cuz</span></p>
     </div>
     
-    <div id ="about" class="isVisible">
+    <div id ="about" class="notVisible">
     	<p>You are on <span id="pnum">About page cuz</span></p>
     </div>
     
-     <div id ="educational" class="isVisible">
+     <div id ="educational" class="notVisible">
     	<p>You are on <span id="pnum">Educational page cuz</span></p>
     </div>
     
-     <div id ="games" class="isVisible">
+     <div id ="games" class="notVisible">
     	<p>You are on <span id="pnum">About page cuz</span></p>
     </div>
     
-     <div id ="literatureart" class="isVisible">
+     <div id ="literatureart" class="notVisible">
     	<p>You are on <span id="pnum">Literature/Art page cuz</span></p>
     </div>
     
-     <div id ="login" class="isVisible">
+     <div id ="login" class="notVisible">
     	<div class="container tab default" id="login">
             <form class="form-signin" role="form">
                 <h2 class="form-signin-heading">
@@ -227,11 +233,11 @@
         </div>
     </div>
     
-     <div id ="politics" class="isVisible">
+     <div id ="politics" class="notVisible">
     	<p>You are on <span id="pnum">Politics page cuz</span></p>
     </div>
     
-     <div id ="register" class="isVisible">
+     <div id ="register" class="notVisible">
     	 <div class="container tab hide" id="register">
             <form class="form-signin" role="form">
                 <h2 class="form-signin-heading">
@@ -251,7 +257,7 @@
         </div>
     </div>
     
-     <div id ="search" class="isVisible">
+     <div id ="search" class="notVisible">
     	<p>You are on <span id="pnum">Search page cuz</span></p>
     </div>
     
@@ -260,25 +266,16 @@
     </main>
 
     <!-- Include js files here! --> 
-        <script src="node_modules/medium-editor/dist/js/medium-editor.js"></script>
+       <!-- <script src="node_modules/medium-editor/dist/js/medium-editor.min.js"></script> -->
 
-		
-    	
+
+   
     <script type="text/javascript" src="https://cdn.firebase.com/js/client/2.2.3/firebase.js"></script>	
     <script src="js/render.js"></script>
     <script src="js/mobilenavbar.js"></script>
     <script src="js/db.js"></script>
     <script src="js/rippleEffect.js"></script>
     
-<script>
-        	var editor = new MediumEditor('.editable', {
-	placeholder: false,
-	toolbar: {
-		buttons: ['h1', 'h2', 'h3', 'h4', 'bold', 'italic', 'underline', 'anchor', 'quote']
-	}
-}).subscribe("editableInput", function() {
-	html.value = editable.innerHTML;
-});
-		</script>
+
 </body>
 </html>
