@@ -31,19 +31,7 @@ var renderPage = function(newURL){
     }
 });
 */
-  var editor = AlloyEditor.editable('editable', {
-    toolbars: {
-        styles: {
-            selections: [
-                {
-                    name: 'text',
-                    buttons: ['bold'],
-                    test: AlloyEditor.SelectionTest.text
-                }
-            ]
-        }
-    }
-});
+  var editor = AlloyEditor.editable('editable');
   //we are changing the links href to decide where we go!
   //nextPage.setAttribute("href", "page"+n);
 };
