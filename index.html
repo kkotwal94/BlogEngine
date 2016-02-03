@@ -11,6 +11,10 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/dashboard.css">
     <link rel="stylesheet" href="css/card.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css">
+    <link rel="stylesheet" href="node_modules/medium-editor/dist/css/medium-editor.css">
+    <link rel="stylesheet" href="node_modules/medium-editor/dist/css/themes/default.css" id="medium-editor-theme">
+
     
     
     
@@ -20,8 +24,13 @@
     
     </script>
     
+    
+    
 </head>
 <body>
+	
+	
+	
     
     <!-- Navbar from codyhouse -->
     <header class = "header">
@@ -175,7 +184,7 @@
     
     
     <div id ="createpost" class="isVisible">
-    	<p>You are on  <span id="pnum">create Post PAGE cuz</span></p>
+    	<textarea class="editable medium-editor-textarea">&lt;p&gt;Textarea is now supported&lt;/p&gt;</textarea>
     </div>
     
     <div id ="comedy" class="isVisible">
@@ -211,7 +220,9 @@
                     Login
                 </button>
                 <hr>
-                <div class="status alert alert-info hide"></div>
+                <div class="status alert alert-info hide">
+                	craig
+                </div>
             </form>
         </div>
     </div>
@@ -232,7 +243,9 @@
                 <button class="btn btn-primary" onclick="return registerButton();" id="reg-btn">
                     Sign Me Up!
                 </button>
-            <div class="status"></div>
+            <div class="status" id="status">
+            	pewpewpw
+            </div>
             </form>
             <hr>
         </div>
@@ -245,14 +258,27 @@
     
     
     </main>
-    
+
     <!-- Include js files here! --> 
+        <script src="node_modules/medium-editor/dist/js/medium-editor.js"></script>
+
+		
+    	
     <script type="text/javascript" src="https://cdn.firebase.com/js/client/2.2.3/firebase.js"></script>	
     <script src="js/render.js"></script>
     <script src="js/mobilenavbar.js"></script>
     <script src="js/db.js"></script>
     <script src="js/rippleEffect.js"></script>
     
-
+<script>
+        	var editor = new MediumEditor('.editable', {
+	placeholder: false,
+	toolbar: {
+		buttons: ['h1', 'h2', 'h3', 'h4', 'bold', 'italic', 'underline', 'anchor', 'quote']
+	}
+}).subscribe("editableInput", function() {
+	html.value = editable.innerHTML;
+});
+		</script>
 </body>
 </html>
