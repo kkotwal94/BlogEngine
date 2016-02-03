@@ -13,10 +13,7 @@
   background-color: #4527A0;
 }
 
-button {
-  border: none;
-  background: transparent;
-}
+
 .controller-container {
   margin-bottom: 5%;
   text-align: center;
@@ -63,7 +60,7 @@ button {
   overflow: hidden;
   background-color: #fafafa;
   height: 35%;
-  width: 40%;
+  width: 100%;
   -webkit-transition: all 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
   transition: all 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
@@ -174,6 +171,8 @@ button {
   transition: left 200ms cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 .card__button {
+  border: none;
+  background: transparent;
   outline: none;
   position: relative;
   display: inline-block;
@@ -182,7 +181,7 @@ button {
   color: #ff1744;
 }
 .card--big {
-  box-shadow: 0 27px 55px 0 rgba(0, 0, 0, 0.3), 0 17px 17px 0 rgba(0, 0, 0, 0.15);
+  /*box-shadow: 0 27px 55px 0 rgba(0, 0, 0, 0.3), 0 17px 17px 0 rgba(0, 0, 0, 0.15);*/
   height: 304px;
   min-height: 304px;
 }
@@ -259,3 +258,5 @@ button {
 .card--small .card__action-bar {
   left: 88px;
 }
+
+
