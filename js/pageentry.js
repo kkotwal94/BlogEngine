@@ -29,19 +29,7 @@
     }
             });
         */
-        var editor = AlloyEditor.editable('editable', {
-    toolbars: {
-        styles: {
-            selections: [
-                {
-                    name: 'text',
-                    buttons: ['bold'],
-                    test: AlloyEditor.SelectionTest.text
-                }
-            ]
-        }
-    }
-});
+        var editor = AlloyEditor.editable('editable');
         }
         
         

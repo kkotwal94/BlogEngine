@@ -58,8 +58,16 @@ b {
   font-weight: bold;
 }
 
-i {
+em {
   font-style: italic;
+}
+
+strong {
+  font-weight: bold;
+}
+
+em {
+  
 }
 
 pre {
@@ -532,7 +540,7 @@ header::before {
 }
 
 .main-container {
-  position: relative;
+  //position: relative;
   z-index: 2;
   min-height: 100vh;
   padding-top: 50px;
@@ -723,7 +731,7 @@ header::before {
 
 .contentEditing {
   margin: 0 auto;
-  width: 960px;
+  width: 50%;
 }
 
 p {
