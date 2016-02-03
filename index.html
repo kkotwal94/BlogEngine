@@ -11,15 +11,14 @@
     
     
     <link rel="stylesheet" href="css/style.css">
-    <!--
+    
     <link rel="stylesheet" href="css/dashboard.css">
     <link rel="stylesheet" href="css/card.css">
     <!--
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css">
     <link rel="stylesheet" href="node_modules/medium-editor/dist/css/medium-editor.css">
     <link rel="stylesheet" href="node_modules/medium-editor/dist/css/themes/default.css" id="medium-editor-theme">
-	-->
-	<!--
+	
 	
 	
     !-->
@@ -28,7 +27,7 @@
     
     
     <script type="text/javascript" charset="utf-8" src="js/pageentry.js"></script>
-    <link href="node_modules/alloyeditor/dist/alloy-editor/assets/alloy-editor-ocean-min.css" rel="stylesheet">
+    <link href="node_modules/alloyeditor/dist/alloy-editor/assets/alloy-editor-atlas-min.css" rel="stylesheet">
      <script src="node_modules/alloyeditor/dist/alloy-editor/alloy-editor-all-min.js"></script>
     
 </head>
@@ -41,8 +40,9 @@
     <header class = "header">
 		<div class="cd-logo"><a href="#/"><img src="images/cd-logo.svg" alt="Logo"></a></div>
 
-		<nav class="cd-main-nav-wrapper">
+		<nav class="cd-main-nav-wrapper" id="nav">
 			<ul id = "loge" class="cd-main-nav">
+
 				<li><a  id="pp" href="#popularposts">High Rated Blogs</a></li>
 				<li><a id="srh" href="#search">Search</a></li>
 				<li><a id="cp" href="#createpost">Write Blog Post</a></li>
@@ -94,7 +94,15 @@
         	<div class="card card--medium">
 	         
 	              <h2 class="card__title">UserName</h2>
-	              <p class="card__text"><input type="text" name="enter story" placeholder="Create story here.."></p>
+	              <div id="editable">
+	              	<p id="Title" class="editable"  >Enter a title here!</p>
+    	
+    				<p id="Body" class="editable"  >Change the body here</p>
+	              </div>
+	              <div class="card__action-bar">
+	                <button class="card__button">POST</button>
+	                <button class="card__button">SAVE</button>
+	          </div>
 	        </div>
         	</div>
 
@@ -188,10 +196,10 @@
     
     
     <div id ="createpost" class="notVisible">
-	   <div class="contentEditing" id="editable">
-    	<p id="Title" class="editable" id ="editable">Enter a title here!</p>
+	   <div class="contentEditing" id ="editable">
+    	<p id="Title" class="editable" id ="editable" >Enter a title here!</p>
     	
-    	<p id="Body" class="editable" id="editable">Change the body here</p>
+    	<p id="Body" class="editable" id="editable" >Change the body here</p>
    		</div>
     </div>
     
