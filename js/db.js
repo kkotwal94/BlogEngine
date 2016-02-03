@@ -1,4 +1,8 @@
+
+
 var firebaseref = new Firebase("https://scorching-heat-6412.firebaseio.com/");
+var regButton = document.getElementById("regbtn");
+
 
 var loginButton = function(){
         var email = document.getElementById('login-email').value;
@@ -14,7 +18,7 @@ var loginButton = function(){
                 console.log("Authenticated successfully with payload:", authData);
             }
         });
-}
+};
 
 var registerButton = function(){
     console.log("register button clicked");
@@ -34,11 +38,10 @@ var registerButton = function(){
 			//additionally, you can log the user in right after the signup is successful and add more data about the user like name etc.              
 		}
 	});
-}
+};
 
 //Callback for Auth Changes
-var authDataCallback = function(authData) 
-{
+var authDataCallback = function(authData) {
         //authData is the object sent by Firebase in the callback.
         if (authData) {
             console.log("User " + authData.uid + " is logged in");
@@ -46,16 +49,17 @@ var authDataCallback = function(authData)
         else {
             console.log("User is logged out");
         }
-}
+};
 
 //register a callback for the change in Authentication Status
 firebaseref.onAuth(authDataCallback);
 
-var div = document.getElementById('login-btn');
-div.addEventListener("click",loginButton);
-console.log(div);
-console.log(loginButton);
-div = document.getElementById('register-btn');
-div.addEventListener("click",registerButton);
-console.log(div);
-console.log(registerButton);
+var div = document.getElementById('login-btn').addEventListener("click",loginButton);
+
+console.log(regButton);
+console.log(document.getElementById('pp'));
+regButton.onclick = function() {
+    console.log("yo?");
+registerButton();
+    
+};
