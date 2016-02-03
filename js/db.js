@@ -1,6 +1,7 @@
 
 
 var firebaseref = new Firebase("https://scorching-heat-6412.firebaseio.com/");
+console.log("Im in db.js");
 var regButton = document.getElementById("regbtn");
 
 
@@ -25,8 +26,10 @@ var registerButton = function(){
 	var email = document.getElementById('email').value;
 	console.log(email);
 	var password = document.getElementById('password').value;
+	var name = document.getElementById('name').value;
 	
 	firebaseref.createUser({
+	    name: name,
 		email: email,
 		password: password
 	},function(error, userData) {
@@ -55,11 +58,3 @@ var authDataCallback = function(authData) {
 firebaseref.onAuth(authDataCallback);
 
 var div = document.getElementById('login-btn').addEventListener("click",loginButton);
-
-console.log(regButton);
-console.log(document.getElementById('pp'));
-regButton.onclick = function() {
-    console.log("yo?");
-registerButton();
-    
-};
