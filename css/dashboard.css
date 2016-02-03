@@ -1,14 +1,13 @@
 
 
 #randomFeeds {
-    //margin-left: 30%;
+
     
     
 }
 
 #sideSection {
-    //float:right;
-    //margin-right:35%;
+
 }
 
 #feeds {
@@ -16,7 +15,11 @@
 }
 
 #tags {
-    //float:right;
+
     height:300px;
-    //outline:1px solid black;
+   
+}
+
+.createStory {
+    
 }
