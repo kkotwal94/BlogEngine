@@ -200,6 +200,7 @@
   top: 176px;
 }
 .card--big .card__action-bar {
+  position:fixed;
   left: 0;
 }
 .card--medium {

@@ -11,15 +11,14 @@
     
     
     <link rel="stylesheet" href="css/style.css">
-    <!--
+    
     <link rel="stylesheet" href="css/dashboard.css">
     <link rel="stylesheet" href="css/card.css">
     <!--
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css">
     <link rel="stylesheet" href="node_modules/medium-editor/dist/css/medium-editor.css">
     <link rel="stylesheet" href="node_modules/medium-editor/dist/css/themes/default.css" id="medium-editor-theme">
-	-->
-	<!--
+	
 	
 	
     !-->
@@ -41,13 +40,9 @@
     <header class = "header">
 		<div class="cd-logo"><a href="#/"><img src="images/cd-logo.svg" alt="Logo"></a></div>
 
-<<<<<<< HEAD
-		<nav class="cd-main-nav-wrapper">
-			<ul id = "loge" class="cd-main-nav">
-=======
 		<nav class="cd-main-nav-wrapper" id="nav">
-			<ul class="cd-main-nav">
->>>>>>> 18e267437a01cdbb01225ba7222d77fad6bea3dc
+			<ul id = "loge" class="cd-main-nav">
+
 				<li><a  id="pp" href="#popularposts">High Rated Blogs</a></li>
 				<li><a id="srh" href="#search">Search</a></li>
 				<li><a id="cp" href="#createpost">Write Blog Post</a></li>
@@ -99,7 +94,15 @@
         	<div class="card card--medium">
 	         
 	              <h2 class="card__title">UserName</h2>
-	              <p class="card__text"><input type="text" name="enter story" placeholder="Create story here.."></p>
+	              <div id="editable">
+	              	<p id="Title" class="editable"  >Enter a title here!</p>
+    	
+    				<p id="Body" class="editable"  >Change the body here</p>
+	              </div>
+	              <div class="card__action-bar">
+	                <button class="card__button">POST</button>
+	                <button class="card__button">SAVE</button>
+	          </div>
 	        </div>
         	</div>
 
