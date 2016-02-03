@@ -48,6 +48,9 @@ var registerButton = function(){
 	},function(error, userData) {
 		if (error) {
 			console.log("Error creating user:", error);
+			var status = document.getElementById("status");
+                status.innerHTML = error;
+                
 		} 
 		else {
 			console.log("Successfully created user account with uid:", userData.uid);
@@ -92,7 +95,12 @@ var addUserName = function(userid) {
         function(error) {
             if (error) {
                 console.log("Error adding user data:", error);
-                regButton.parentElement.getElementsByClassName('status')[0].innerHTML = ("Error adding user data:" + error);
+                var status = document.getElementById("status");
+                console.log(status);
+                var textNode = document.createTextNode(error);
+                status.innerHTML = textNode;
+                console.log(status.innerHTML);
+                //regButton.parentElement.getElementsByClassName('status')[0].innerHTML = ("Error adding user data:" + error);
             } else {
                 console.log("Successfully added user data for");
                 var successLogin = document.querySelector(".cd-main-nav > li > a[data-target= '#login']").click();
