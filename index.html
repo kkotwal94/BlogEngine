@@ -33,7 +33,7 @@
 				<li><a id="srh" href="#search">Search</a></li>
 				<li><a  id="cp" href="#createpost">Write Blog Post</a></li>
 				<li><a id="ab"  href="#about">About</a></li>
-				<li><a id="log" href="#login">Login</a></li>
+				<li><a id="log" href="#login" data-target="#login">Login</a></li>
 				<li><a id="reg" href="#register">Register</a></li>
 			
 				<li>
@@ -220,16 +220,13 @@
                 <hr>
                 <input type="text" class="form-control" placeholder="Your Name" required="" autofocus="" id="name"><input type="email" class="form-control" placeholder="Email address" required=""
                 autofocus="" id="email"><input type="password" class="form-control" placeholder="Password" required="" id="password"/>
-                <button class="btn btn-primary" onclick="return registerButton();" id="regbtn">
+                <button class="btn btn-primary" onclick="return registerButton();" id="reg-btn">
                     Sign Me Up!
                 </button>
+            <div class="status"></div>
             </form>
             <hr>
-            <div class="status alert alert-info hide"></div>
         </div>
-         <button class="btn btn-primary" type="button" id="regbtn">
-                    Sign Me Up!
-                </button>
     </div>
     
      <div id ="search" class="isVisible">
