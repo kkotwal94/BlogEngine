@@ -1,5 +1,4 @@
-document.addEventListener('DOMContentLoaded', function(){ 
-var firstURL = window.location.pathname;
+ var firstURL = window.location.pathname;
 var pageNumberData = 0;
 console.log(location.hash);
 console.log(location.pathname);
@@ -43,7 +42,4 @@ document.body.addEventListener('click', function(ev){
     changePageTo(fakeURL);
   }
   }
-});
-
-
 });

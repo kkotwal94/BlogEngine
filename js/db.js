@@ -4,26 +4,48 @@ var firebaseref = new Firebase("https://scorching-heat-6412.firebaseio.com/");
 console.log("Im in db.js");
 var regButton = document.getElementById("reg-btn");
 var loginButton = document.getElementById("login-btn");
+var logoutButton = document.getElementById("logout");
+var generalNav = document.getElementById("loge");
+var removedLoginNav = null;
+var removedRegNav = null;
+var addedLogoutNav = null;
 
 
 var loginCallback = function(error, authData) {
         if (error) {
-            console.log("Login Failed!", error);
-            loginButton.parentElement.getElementsByClassName('status')[0].innerHTML = ("Login Failed!:" + error);
+            var status = document.getElementById("status");
+                status.innerHTML = ("Login Failed!: ", error);
         } else {
-            console.log("Authenticated successfully with payload:", authData);
-            loginButton.parentElement.getElementsByClassName('status')[0].innerHTML = ("You are logged in as:" + authData.uid);
-        }
+            var status = document.getElementById("status");
+            status.innerHTML = ("Authenticated successfully with payload: ", authData);
+            updatingNav();
+            changePageTo("about");
+           }
 }
 
 var signupLoginCallback = function(error, authData) {
         if (error) {
-            console.log("Login Failed!", error);
+            	var status = document.getElementById("status");
+                status.innerHTML = ("Error adding user to db:",error);
         } else {
-            console.log("Authenticated successfully with payload:", authData);
-            addUserName(userData.uid);
+            	var status = document.getElementById("status");
+                status.innerHTML = ("Authenticated successfully with payload:", authData);
+                addUserName(userData.uid);
+                updatingNav();
+                changePageTo("about");
         }
 }
+
+var logoutButton = function(){
+        firebaseref.unauth();
+        userData = null;
+        var status = document.getElementById("status");
+        status.innerHTML = ("Successfully logged out!");
+        addedLogoutNav.parentNode.removeChild(addedLogoutNav);
+        generalNav.insertBefore(removedRegNav, generalNav.children[generalNav.children.length - 1]);
+        generalNav.insertBefore(removedLoginNav, generalNav.children[generalNav.children.length - 1]);
+    };
+
 
 var loginButton = function(){
         var email = document.getElementById('login-email').value;
@@ -47,16 +69,11 @@ var registerButton = function(){
 		password: password
 	},function(error, userData) {
 		if (error) {
-			console.log("Error creating user:", error);
 			var status = document.getElementById("status");
-                status.innerHTML = error;
+                status.innerHTML = ("Error creating user:",error);
                 
 		} 
 		else {
-			console.log("Successfully created user account with uid:", userData.uid);
-			console.log(regButton.parentElement.getElementsByClassName('status')[0]);
-			regButton.parentElement.getElementsByClassName('status')[0].innerHTML = ("Successfully created user account with uid:" + userData.uid);
-			console.log(regButton.parentElement.getElementsByClassName('status')[0]);    
                 firebaseref.authWithPassword({
                     email: email,
                     password: password,
@@ -64,13 +81,11 @@ var registerButton = function(){
             //additionally, you can log the user in right after the signup is successful and add more data about the user like name etc.              
 		}
 	});
-
-    
-			console.log(regButton.parentElement.getElementsByClassName('status')[0]);
 };
 
 //Callback for Auth Changes
 var authDataCallback = function(authData) {
+    console.log(authData);
         //authData is the object sent by Firebase in the callback.
         if (authData) {
             console.log("User " + authData.uid + " is logged in");
@@ -87,23 +102,37 @@ firebaseref.onAuth(authDataCallback);
 
 var addUserName = function(userid) {
         var name = document.getElementById('name').value;
-        var userRef = new Firebase('https://scorching-heat-6412.firebaseio.com/' + userid);
+        var userRef = new Firebase('https://scorching-heat-6412.firebaseio.com/users/' + userid);
         userRef.set({
             full_name: name
         },
 
         function(error) {
             if (error) {
-                console.log("Error adding user data:", error);
                 var status = document.getElementById("status");
-                console.log(status);
-                var textNode = document.createTextNode(error);
-                status.innerHTML = textNode;
-                console.log(status.innerHTML);
-                //regButton.parentElement.getElementsByClassName('status')[0].innerHTML = ("Error adding user data:" + error);
+                status.innerHTML = ("Error adding user data: ", error);
             } else {
-                console.log("Successfully added user data for");
-                var successLogin = document.querySelector(".cd-main-nav > li > a[data-target= '#login']").click();
+                var status = document.getElementById("status");
+                status.innerHTML = ("Successfully added user data for: ", userid);
             }
         });
     };
+
+var updatingNav = function() {
+    removedLoginNav = generalNav.children[generalNav.children.length - 2];
+    removedLoginNav.parentNode.removeChild(removedLoginNav);
+    removedRegNav = generalNav.children[generalNav.children.length - 2];
+    removedRegNav.parentNode.removeChild(removedRegNav);
+    var logoutNavLi = document.createElement("LI");                 // Create a <li> node                              // Append the text to <li>
+    var logoutNavA = document.createElement("A");
+    var logoutTextA = document.createTextNode("Logout");         // Create a text node
+    logoutNavA.appendChild(logoutTextA);
+    logoutNavA.setAttribute("id","logout");
+    logoutNavA.setAttribute("href","#login");
+    logoutNavA.setAttribute("onclick","return logoutButton();");
+    logoutNavLi.appendChild(logoutNavA);
+    console.log(logoutNavLi);
+    addedLogoutNav = generalNav.children[generalNav.children.length - 1];
+    addedLogoutNav.parentNode.insertBefore(logoutNavLi,addedLogoutNav);
+    addedLogoutNav = generalNav.children[generalNav.children.length - 2];
+}
