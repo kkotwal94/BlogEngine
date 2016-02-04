@@ -880,3 +880,10 @@ p {
 }
 
 
+.btn.red {
+   background-color: red;
+}
+
+.btn.orange {
+  background-color: orange;
+}

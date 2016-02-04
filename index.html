@@ -14,6 +14,7 @@
     
     <link rel="stylesheet" href="css/dashboard.css">
     <link rel="stylesheet" href="css/card.css">
+    <link rel="stylesheet" href="css/input.css">
     <!--
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css">
     <link rel="stylesheet" href="node_modules/medium-editor/dist/css/medium-editor.css">
@@ -209,8 +210,27 @@
     <div id="Body" class="editable"><p>Change the body here</p></div>
     
 		</div>
-   	</div>
-   		<button class="btn red" type="button" onclick="return postContent();"><span>Publish</span></button>
+  
+   	<br/>
+   	<br/>
+   	
+   	<ul id = "taggers" class="tags"style="margin: 0 auto; width:30%">
+	 
+	</ul>
+	
+   	<div class="alignCenterInput">
+   	
+   	<span class="input input--hoshi">
+					<input class="input__field input__field--hoshi" type="text" id="taginput">
+					<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="input-4">
+						<span class="input__label-content input__label-content--hoshi">Insert Tags #'s</span>
+					</label>
+	</span>
+	
+	<button class="btn red" type="button" onclick="return getTags();"><span>Add Tag</span></button>
+	
+	</div>
+   		<button class="btn" type="button" onclick="return postContent();"><span>Publish</span></button>
 
     </div>
     
@@ -294,6 +314,7 @@
     <script src="js/mobilenavbar.js"></script>
     <script src="js/db.js"></script>
     <script src="js/rippleEffect.js"></script>
+    <script src="js/classie.js"></script>
     <script src="js/crud.js"></script>
     
 

@@ -69,7 +69,7 @@ var renderPage = function(newURL){
         test: AlloyEditor.SelectionTest.table
 }];
 
-        var editor = AlloyEditor.editable('editable', {
+       var editor = AlloyEditor.editable('Title', {
     toolbars: {
        add: {
         buttons: ['image', 'camera', 'hline', 'table'],
@@ -80,6 +80,19 @@ var renderPage = function(newURL){
         }
     }
 });
+
+ var editor1 = AlloyEditor.editable('Body', {
+    toolbars: {
+       add: {
+        buttons: ['image', 'camera', 'hline', 'table'],
+        tabIndex: 2
+    },
+        styles: {
+            selections: Selections
+        }
+    }
+});
+
 
   //we are changing the links href to decide where we go!
   //nextPage.setAttribute("href", "page"+n);
@@ -102,6 +115,8 @@ window.addEventListener('popstate', function(backButtonEvent){
 });
 
 var nav = document.getElementById('nav');
+var tags = document.getElementById('taggers');
+
 nav.addEventListener('click', function(ev){
   ev.preventDefault(); //stops the link from executing
   
@@ -113,4 +128,8 @@ nav.addEventListener('click', function(ev){
     changePageTo(fakeURL);
   }
   }
+});
+
+tags.addEventListener('click', function(ev){
+  ev.preventDefault(); //stops the link from executing
 });
