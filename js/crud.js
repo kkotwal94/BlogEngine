@@ -25,16 +25,28 @@ var showReg = function() {
     var toggle = document.getElementById('toggs');
     var close = document.getElementById('closer');
     var logincontainer = document.getElementById('logincontainer');
-    console.log(logincontainer);
+    document.getElementById("reg-status").innerHTML = ("");
+    var nameField = document.getElementById("name");
+    nameField.value = "";
+    var emailField = document.getElementById("email")
+    emailField.value = "";
+    var passField = document.getElementById("password")
+    passField.value = "";
+    var comPassField = document.getElementById("repeat-password")
+    comPassField.value = "";
     logincontainer.classList.add('active'); 
-    console.log("Trying to showreg");
 }
 
 var showLogin = function() {
     var toggle = document.getElementById('toggs');
     var close = document.getElementById('closer');
     var logincontainer = document.getElementById('logincontainer');
-    logincontainer.classList.remove('active'); 
+    document.getElementById("login-status").innerHTML = ("");
+    var emailField = document.getElementById("login-email");
+    emailField.value = "";
+    var passField = document.getElementById("login-password");
+    passField.value = "";
+    logincontainer.classList.remove('active');
 }
 
 var modal = document.getElementById('myModal');
