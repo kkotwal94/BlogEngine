@@ -2,12 +2,9 @@
 
 var firebaseref = new Firebase("https://scorching-heat-6412.firebaseio.com/");
 console.log("Im in db.js");
-var regButton = document.getElementById("reg-btn");
-var loginButton = document.getElementById("login-btn");
 var logoutButton = document.getElementById("logout");
 var generalNav = document.getElementById("loge");
 var removedLoginNav = null;
-var removedRegNav = null;
 var addedLogoutNav = null;
 
 
@@ -27,29 +24,30 @@ var signupLoginCallback = function(error, authData) {
         if (error) {
             	var status = document.getElementById("status");
                 status.innerHTML = ("Error adding user to db:",error);
+                alert("hey");
         } else {
             	var status = document.getElementById("status");
                 status.innerHTML = ("Authenticated successfully with payload:", authData);
                 addUserName(userData.uid);
                 updatingNav();
+                alert("ran through updating nav");
                 changePageTo("about");
         }
 }
 
 var logoutButton = function(){
-    event.preventDefault();
         firebaseref.unauth();
         userData = null;
         var status = document.getElementById("status");
         status.innerHTML = ("Successfully logged out!");
         addedLogoutNav.parentNode.removeChild(addedLogoutNav);
-        generalNav.insertBefore(removedRegNav, generalNav.children[generalNav.children.length - 1]);
         generalNav.insertBefore(removedLoginNav, generalNav.children[generalNav.children.length - 1]);
+        changePageTo("about");
     };
 
 
 var loginButton = function(){
-     event.preventDefault();
+        event.preventDefault();
         var email = document.getElementById('login-email').value;
         var password = document.getElementById('login-password').value;
         firebaseref.authWithPassword({
@@ -59,22 +57,22 @@ var loginButton = function(){
 };
 
 var registerButton = function(){
-     event.preventDefault();
+    event.preventDefault();
     console.log("register button clicked");
+    var status = document.getElementById("status");
 	var email = document.getElementById('email').value;
 	console.log(email);
 	var password = document.getElementById('password').value;
+	var repeatPassword = document.getElementById('repeat-password').value;
 	var name = document.getElementById('name').value;
-	console.log(name);
-	
 	firebaseref.createUser({
 	    name: name,
 		email: email,
 		password: password
 	},function(error, userData) {
 		if (error) {
-			var status = document.getElementById("status");
-                status.innerHTML = ("Error creating user:",error);
+			status = document.getElementById("status");
+            status.innerHTML = ("Error creating user:",error);
                 
 		} 
 		else {
@@ -144,8 +142,6 @@ var addBlogPost = function(blogPost, userid, title) { //could either pass in a b
 var updatingNav = function() {
     removedLoginNav = generalNav.children[generalNav.children.length - 2];
     removedLoginNav.parentNode.removeChild(removedLoginNav);
-    removedRegNav = generalNav.children[generalNav.children.length - 2];
-    removedRegNav.parentNode.removeChild(removedRegNav);
     var logoutNavLi = document.createElement("LI");                 // Create a <li> node                              // Append the text to <li>
     var logoutNavA = document.createElement("A");
     var logoutTextA = document.createTextNode("Logout");         // Create a text node
@@ -154,10 +150,11 @@ var updatingNav = function() {
     logoutNavA.setAttribute("href","#login");
     logoutNavA.setAttribute("onclick","return logoutButton();");
     logoutNavLi.appendChild(logoutNavA);
-    console.log(logoutNavLi);
     addedLogoutNav = generalNav.children[generalNav.children.length - 1];
+    console.log(addedLogoutNav);
     addedLogoutNav.parentNode.insertBefore(logoutNavLi,addedLogoutNav);
     addedLogoutNav = generalNav.children[generalNav.children.length - 2];
+    console.log(addedLogoutNav);
 }
 
 //setting up firebase built in events
@@ -269,5 +266,4 @@ var addListItem = function(content) {
         var itemRef = new Firebase('https://dazzling-fire-8954.firebaseio.com/lists/sharedlist/items/' + key);
         itemRef.remove();
     }
-
     */

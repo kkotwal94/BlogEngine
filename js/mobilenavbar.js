@@ -27,8 +27,7 @@ document.addEventListener('DOMContentLoaded', function(){
 	var pol = document.getElementById('pol');
 	var art = document.getElementById('art');
 	var vg = document.getElementById('vg');
-	
-	
+
 	
 	pp.addEventListener('click', function(event) {
 		var screenSize = checkWindowWidth();
@@ -49,8 +48,7 @@ document.addEventListener('DOMContentLoaded', function(){
 		}
     });
     
-    
-    
+
     srh.addEventListener('click', function(event) {
     	var screenSize = checkWindowWidth();
     		if(screenSize == false) {

@@ -41,9 +41,10 @@
     
     <!-- Navbar from codyhouse -->
     <header class = "header">
-		<div class="cd-logo"><a href="/"><img src="images/cd-logo.svg" alt="Logo"></a></div>
+		
 
 		<nav class="cd-main-nav-wrapper" id="nav">
+			<div class="cd-logo"><a href="/"><img src="images/cd-logo.svg" alt="Logo"></a></div>
 			<ul id = "loge" class="cd-main-nav">
 
 				<li><a  id="pp" href="#popularposts">High Rated Blogs</a></li>
@@ -322,13 +323,16 @@
       
       <div class="input-container">
         <input type="text"  required="required" id="login-email" autocomplete="off"/>
-        <label for="Username">Username</label>
+        <label for="Username">Email Address</label>
         <div class="bar"></div>
       </div>
       <div class="input-container">
         <input type="password"  required="required" id="login-password" autocomplete="off"/>
         <label for="Password">Password</label>
         <div class="bar"></div>
+      </div>
+      <div class="input-container">
+		<div id = "status"></div>
       </div>
       <div class="button-container">
         <button type="button" id="login-btn" onclick="return loginButton();"><span>Go</span></button>
@@ -345,14 +349,14 @@
     </h1>
     <form>
     	<div class="input-container">
-        <input type="text" required="required" id="name" autocomplete="off"/>
+        <input type="text" id="name" required="required" id="name" autocomplete="off"/>
         <label for="Username">Full Name</label>
         <div class="bar"></div>
       </div>
       
       <div class="input-container">
         <input type="text" id="email" required="required"/>
-        <label for="Username">Username</label>
+        <label for="Username">Email Address</label>
         <div class="bar"></div>
       </div>
       <div class="input-container">
@@ -361,13 +365,17 @@
         <div class="bar"></div>
       </div>
       <div class="input-container">
-        <input type="password" id="Repeat Password" required="required"/>
+        <input type="password" id="repeat-password" required="required"/>
         <label for="Repeat Password">Repeat Password</label>
         <div class="bar"></div>
       </div>
-      <div class="button-container">
-        <button onclick="return registerButton();" id="reg-btn"><span>Next</span></button>
+      <div class="input-container">
+		<div id = "status"></div>
       </div>
+      <div class="button-container">
+        <button onclick="return registerButton();" id="reg-btn"><span>Submit</span></button>
+      </div>
+      
     </form>
   </div>
 </div>
