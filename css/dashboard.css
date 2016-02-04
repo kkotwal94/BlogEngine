@@ -132,7 +132,7 @@ body.thin::-webkit-scrollbar {
     
     margin: auto;
     padding: 0;
-    border: 1px solid #888;
+    
     width: 80%;
    
     -webkit-animation-name: animatetop;
