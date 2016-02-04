@@ -223,6 +223,7 @@ var removeBlogPost = function(key) {
 
 /////// imagine this is a handler for a post button
 
+/*
 $("#addItemToList").on('click', function() {
         var $content = $("#listitem");
         var content = $content.val();
@@ -265,4 +266,4 @@ var addListItem = function(content) {
         itemRef.remove();
     }
 
-    
+    */
