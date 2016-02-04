@@ -1,5 +1,4 @@
 
-
 var firebaseref = new Firebase("https://scorching-heat-6412.firebaseio.com/");
 console.log("Im in db.js");
 var logoutButton = document.getElementById("logout");

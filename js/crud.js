@@ -6,18 +6,15 @@ window.addEventListener('load',function(){
 var toggle = document.getElementById('toggs');
     var close = document.getElementById('closer');
     var logincontainer = document.getElementById('logincontainer');
-
 toggle.addEventListener('click', function(){
     console.log("Hit");
    logincontainer.classList.add('active'); 
     
 });
-
 close.addEventListener('click', function() {
     console.log("Hit");
     logincontainer.classList.remove('active'); 
 });
-
 });
 */
 
@@ -143,5 +140,3 @@ var getfilterTaggers = function() {
     console.log(filterTags);
     filtertaggers();
 }
-
-
