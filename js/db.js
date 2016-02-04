@@ -37,6 +37,7 @@ var signupLoginCallback = function(error, authData) {
 }
 
 var logoutButton = function(){
+    event.preventDefault();
         firebaseref.unauth();
         userData = null;
         var status = document.getElementById("status");
@@ -48,6 +49,7 @@ var logoutButton = function(){
 
 
 var loginButton = function(){
+     event.preventDefault();
         var email = document.getElementById('login-email').value;
         var password = document.getElementById('login-password').value;
         firebaseref.authWithPassword({
@@ -57,11 +59,13 @@ var loginButton = function(){
 };
 
 var registerButton = function(){
+     event.preventDefault();
     console.log("register button clicked");
 	var email = document.getElementById('email').value;
 	console.log(email);
 	var password = document.getElementById('password').value;
 	var name = document.getElementById('name').value;
+	console.log(name);
 	
 	firebaseref.createUser({
 	    name: name,
@@ -140,6 +144,8 @@ var addBlogPost = function(blogPost, userid, title) { //could either pass in a b
 var updatingNav = function() {
     removedLoginNav = generalNav.children[generalNav.children.length - 2];
     removedLoginNav.parentNode.removeChild(removedLoginNav);
+    removedRegNav = generalNav.children[generalNav.children.length - 2];
+    removedRegNav.parentNode.removeChild(removedRegNav);
     var logoutNavLi = document.createElement("LI");                 // Create a <li> node                              // Append the text to <li>
     var logoutNavA = document.createElement("A");
     var logoutTextA = document.createTextNode("Logout");         // Create a text node

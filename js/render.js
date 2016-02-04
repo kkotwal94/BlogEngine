@@ -94,6 +94,8 @@ var renderPage = function(newURL){
 });
 
 
+
+
   //we are changing the links href to decide where we go!
   //nextPage.setAttribute("href", "page"+n);
 };
@@ -106,7 +108,7 @@ var changePageTo = function(newURL){
 
 window.addEventListener('popstate', function(backButtonEvent){
   pageNumberData -= 1;
-  console.log(backButtonEvent.state);
+  //console.log(backButtonEvent.state);
   if(backButtonEvent.state == null) {
     renderPage('dashboard');
   } else {
@@ -123,6 +125,7 @@ nav.addEventListener('click', function(ev){
   if (ev.target.nodeName == 'A'){
     if(ev.target.getAttribute('href') != '#null') {
     var fakeURL = ev.target.getAttribute('href');
+    console.log(fakeURL);
     var str = fakeURL.split('#');
     fakeURL = str[1];
     changePageTo(fakeURL);
@@ -130,6 +133,3 @@ nav.addEventListener('click', function(ev){
   }
 });
 
-tags.addEventListener('click', function(ev){
-  ev.preventDefault(); //stops the link from executing
-});
