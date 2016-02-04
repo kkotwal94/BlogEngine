@@ -65,6 +65,10 @@
   transition: all 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
 }
+
+.activeOverflow {
+  overflow: auto;
+}
 .card:hover {
   cursor: pointer;
 }
@@ -170,6 +174,25 @@
   -webkit-transition: left 200ms cubic-bezier(0.075, 0.82, 0.165, 1);
   transition: left 200ms cubic-bezier(0.075, 0.82, 0.165, 1);
 }
+
+
+.card__action-bar-nonabs {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  
+  bottom: 0;
+  top: auto;
+  left: 0;
+  right: 0;
+  padding: 0 8px;
+  border-top: 1px solid #E0E0E0;
+  boz-sizing: border-box;
+  height: 52px;
+  -webkit-transition: left 200ms cubic-bezier(0.075, 0.82, 0.165, 1);
+  transition: left 200ms cubic-bezier(0.075, 0.82, 0.165, 1);
+}
 .card__button {
   border: none;
   background: transparent;
@@ -229,14 +252,15 @@
 }
 .card--small {
   box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.3), 0 2px 2px 0 rgba(0, 0, 0, 0.2);
-  height: 136px;
-  min-height: 136px;
+  height: 10%;
+  background-color: #33414a;
+  
 }
 .card--small .card__image {
   border-radius: 1px 0 0 1px;
   left: 0;
   top: 0;
-  width: 88px;
+  width: 20%;
   opacity: 1;
   max-height: 136px;
 }
@@ -244,13 +268,14 @@
   opacity: 0;
 }
 .card--small .card__title {
-  color: #000;
-  left: 88px;
+  color: orange;
+  left: 19%;
   top: 8px;
 }
 .card--small .card__subtitle {
   opacity: 1;
-  left: 88px;
+  left: 20%;
+  color:orange;
 }
 .card--small .card__text {
   top: 30px;
@@ -260,4 +285,11 @@
   left: 88px;
 }
 
+.myProf {
+  float: right;
+      bottom: 20%;
+    float: right;
+    padding: 1%;
+    right: 2%;
+}
 

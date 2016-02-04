@@ -9,14 +9,16 @@
 	    
 	<link href='css/reset.css' rel='stylesheet' type='text/css'>
     
-    
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css">
     <link rel="stylesheet" href="css/style.css">
     
     <link rel="stylesheet" href="css/dashboard.css">
-    <link rel="stylesheet" href="css/card.css">
+    
     <link rel="stylesheet" href="css/input.css">
+    <link rel="stylesheet" href="css/login.css">
+     <link rel="stylesheet" href="css/card.css">
     <!--
-    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css">
+    
     <link rel="stylesheet" href="node_modules/medium-editor/dist/css/medium-editor.css">
     <link rel="stylesheet" href="node_modules/medium-editor/dist/css/themes/default.css" id="medium-editor-theme">
 	
@@ -48,8 +50,8 @@
 				<li><a id="srh" href="#search">Search</a></li>
 				<li><a id="cp" href="#createpost">Write Blog Post</a></li>
 				<li><a id="ab"  href="#about">About</a></li>
-				<li><a id="log" href="#login">Login</a></li>
-				<li><a id="reg" href="#register">Register</a></li>
+				<li><a id="log" href="#null">Login/Register</a></li>
+			
 				<li>
 					<a href="#null" class="cd-subnav-trigger"><span>Categories</span></a>
 
@@ -95,9 +97,22 @@
         	</div>
         	<div id="randomFeeds" class="col col-5-12">
         	<div class="createStory" style="padding-top: 50px">
-        	<div class="card card--medium">
+        	<div class="card card--small" style="height:10%">
 	         
-	              <h3 class="card__title">UserName</h3>
+	              <div style="background-image: url(https://placeimg.com/640/480/nature)" class="card__image"></div>
+	             <h2 class="card__title">Karan Kotwal</h2><span class="card__subtitle">142124 Posts</span>
+	              <button class="btn myProf" style="background-color: red">My Profile</button>
+   
+ 
+    
+
+	              
+	        </div>
+	        
+	        
+        	<div class="card card--medium activeOverflow">
+	         
+	             
 	             
    
     <div id="Title1" class="editable" ><p>Enter a title here!</p></div>
@@ -105,11 +120,13 @@
     <div id="Body1" class="editable"><p>Change the body here</p></div>
     
 
-	              <div class="card__action-bar">
+	              
+	        </div>
+	        
+	        <div class="card__action-bar-nonabs">
 	                <button class="card__button">POST</button>
 	                <button class="card__button">SAVE</button>
 	          </div>
-	        </div>
         	</div>
 
         	
@@ -191,7 +208,29 @@
 	                <button class="card__button">LEARN MORE</button>
 	          </div>
 	        </div>
+	        
+	        
+	        <div class="card card--medium activeOverflow">
+	        
+	              <ul id = "preferredtaggers" class="tags">
+	 					
+					</ul>
+	              
+	        </div>
+	        
+				<span class="input input--hoshi">
+					<input class="input__field input__field--hoshi" type="text" id="filterInput">
+					<label class="input__label input__label--hoshi input__label--hoshi-color-3" for="input-4">
+						<span class="input__label-content input__label-content--hoshi">Insert Tags to add to filter</span>
+					</label>
+	</span>
+	
+	<button class="btn" type="button" onclick="return getfilterTaggers();"><span>Add Tag to Filter By</span></button>
+	        
         	</div>
+        	
+        	
+        	
         	
         </div>
         
@@ -255,22 +294,7 @@
     </div>
     
      <div id ="login" class="notVisible">
-    	<div class="container tab default" id="login">
-            <form class="form-signin" role="form">
-                <h2 class="form-signin-heading">
-                    <em class="stackhive-marker"></em>Login to your account
-                </h2>
-                <hr>
-                <input type="email" class="form-control" placeholder="Email address" required="" autofocus="" id="login-email"><input type="password" class="form-control" placeholder="Password"
-                required="" id="login-password">
-                <button class="btn btn-primary" onclick="return loginButton();" type="button" id="login-btn">
-                    Login
-                </button>
-                <hr>
-                <div class="status alert alert-info hide" id = "status">
-                </div>
-            </form>
-        </div>
+     
     </div>
     
      <div id ="politics" class="notVisible">
@@ -278,29 +302,79 @@
     </div>
     
      <div id ="register" class="notVisible">
-    	 <div class="container tab hide" id="register">
-            <form class="form-signin" role="form">
-                <h2 class="form-signin-heading">
-                    Register a new account
-                </h2>
-                <hr>
-                <input type="text" class="form-control" placeholder="Your Name" required="" autofocus="" id="name"><input type="email" class="form-control" placeholder="Email address" required=""
-                autofocus="" id="email"><input type="password" class="form-control" placeholder="Password" required="" id="password"/>
-                <button class="btn btn-primary" onclick="return registerButton();" id="reg-btn">
-                    Sign Me Up!
-                </button>
-            <div class="status" id="status">
-            </div>
-            </form>
-            <hr>
-        </div>
+     	
     </div>
     
      <div id ="search" class="notVisible">
     	<p>You are on <span id="pnum">Search page cuz</span></p>
     </div>
     
+    <div class="modal" id="myModal">
+    <div class="modal-content" id="modcontent">
     
+    <div class="modal-body" id="modbody">
+      <div class="container" id="logincontainer">
+  <div class="cards"></div>
+  <div class="cards">
+    <h1 class="title">Login</h1>
+    <form>
+   
+      
+      <div class="input-container">
+        <input type="text"  required="required" id="login-email" autocomplete="off"/>
+        <label for="Username">Username</label>
+        <div class="bar"></div>
+      </div>
+      <div class="input-container">
+        <input type="password"  required="required" id="login-password" autocomplete="off"/>
+        <label for="Password">Password</label>
+        <div class="bar"></div>
+      </div>
+      <div class="button-container">
+        <button type="button" id="login-btn" onclick="return loginButton();"><span>Go</span></button>
+      </div>
+      <div class="footer"><a href="#">Forgot your password?</a>
+      <a href="#">Click on the pen to register?</a>
+      </div>
+    </form>
+  </div>
+  <div class="cards alt">
+    <div class="toggle" id="toggs" onclick="return showReg();"></div>
+    <h1 class="title">Register
+      <div class="close" id="closer" onclick="return showLogin();"></div>
+    </h1>
+    <form>
+    	<div class="input-container">
+        <input type="text" id="Username" required="required" id="name" autocomplete="off"/>
+        <label for="Username">Full Name</label>
+        <div class="bar"></div>
+      </div>
+      
+      <div class="input-container">
+        <input type="text" id="email" required="required"/>
+        <label for="Username">Username</label>
+        <div class="bar"></div>
+      </div>
+      <div class="input-container">
+        <input type="password" id="password" required="required"/>
+        <label for="Password">Password</label>
+        <div class="bar"></div>
+      </div>
+      <div class="input-container">
+        <input type="password" id="Repeat Password" required="required"/>
+        <label for="Repeat Password">Repeat Password</label>
+        <div class="bar"></div>
+      </div>
+      <div class="button-container">
+        <button onclick="return registerButton();" id="reg-btn"><span>Next</span></button>
+      </div>
+    </form>
+  </div>
+</div>
+    </div>
+    </div>
+    
+  </div>
     
     </main>
 

@@ -1,5 +1,76 @@
 var tags = [];
 
+var filterTags = [];
+/*
+window.addEventListener('load',function(){
+var toggle = document.getElementById('toggs');
+    var close = document.getElementById('closer');
+    var logincontainer = document.getElementById('logincontainer');
+
+toggle.addEventListener('click', function(){
+    console.log("Hit");
+   logincontainer.classList.add('active'); 
+    
+});
+
+close.addEventListener('click', function() {
+    console.log("Hit");
+    logincontainer.classList.remove('active'); 
+});
+
+});
+*/
+
+var showReg = function() {
+    var toggle = document.getElementById('toggs');
+    var close = document.getElementById('closer');
+    var logincontainer = document.getElementById('logincontainer');
+    console.log(logincontainer);
+    logincontainer.classList.add('active'); 
+    console.log("Trying to showreg");
+}
+
+var showLogin = function() {
+    var toggle = document.getElementById('toggs');
+    var close = document.getElementById('closer');
+    var logincontainer = document.getElementById('logincontainer');
+    logincontainer.classList.remove('active'); 
+}
+
+var modal = document.getElementById('myModal');
+
+// Get the button that opens the modal
+var btn = document.getElementById("log");
+
+var modalcontent = document.getElementById("modcontent");
+var modbody = document.getElementById("modbody");
+// Get the <span> element that closes the modal
+//var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+/*
+span.onclick = function() {
+  modal.style.display = "none";
+}
+*/
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+modalcontent.onclick = function(event) {
+    if(event.target == modbody) {
+        modal.style.display = "none";
+    }
+}
 var postContent = function() {
 
     var title = document.getElementById('Title');
@@ -37,3 +108,28 @@ var taggers = function() {
     }
     
 }
+
+
+var filtertaggers = function() {
+    var tagList = document.getElementById('preferredtaggers');
+    tagList.innerHTML = "";
+    for(var i = 0; i < filterTags.length; i++){
+        var tag = document.createElement('li');
+        var textNode = document.createTextNode(filterTags[i]);
+        tag.className="tag";
+        tag.appendChild(textNode);
+        tagList.appendChild(tag);
+    }
+    
+}
+
+
+var getfilterTaggers = function() {
+    var inputTag = document.getElementById('filterInput').value;
+    console.log(inputTag);
+    filterTags.push(inputTag);
+    console.log(filterTags);
+    filtertaggers();
+}
+
+
