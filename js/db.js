@@ -11,9 +11,9 @@ var addedLogoutNav = null;
 var loginCallback = function(error, authData) {
         var loginStatus = document.getElementById("login-status");
         if (error) {
-                status.innerHTML = ("Login Failed!: ", error);
+                loginStatus.innerHTML = ("Login Failed!: ", error);
         } else {
-            status.innerHTML = ("Authenticated successfully with payload: ", authData);
+            loginStatus.innerHTML = ("Authenticated successfully with payload: ", authData);
             updatingNav();
             modal.style.display = "none";
             changePageTo("about");
@@ -23,9 +23,9 @@ var loginCallback = function(error, authData) {
 var signupLoginCallback = function(error, authData) {
     var regStatus = document.getElementById("reg-status");
         if (error) {
-            	status.innerHTML = ("Error adding user to db:",error);
+            	regStatus.innerHTML = ("Error adding user to db:",error);
         } else {
-                status.innerHTML = ("Authenticated successfully with payload:", authData);
+                regStatus.innerHTML = ("Authenticated successfully with payload:", authData);
                 addUserName(userData.uid);
                 updatingNav();
                 modal.style.display = "none";
@@ -67,8 +67,7 @@ var registerButton = function(){
 		password: password
 	},function(error, userData) {
 		if (error) {
-			status = document.getElementById("status");
-            status.innerHTML = ("Error creating user:",error);
+		    status.innerHTML = ("Error creating user:",error);
                 
 		} 
 		else {
