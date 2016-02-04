@@ -140,8 +140,6 @@ var addBlogPost = function(blogPost, userid, title) { //could either pass in a b
 var updatingNav = function() {
     removedLoginNav = generalNav.children[generalNav.children.length - 2];
     removedLoginNav.parentNode.removeChild(removedLoginNav);
-    removedRegNav = generalNav.children[generalNav.children.length - 2];
-    removedRegNav.parentNode.removeChild(removedRegNav);
     var logoutNavLi = document.createElement("LI");                 // Create a <li> node                              // Append the text to <li>
     var logoutNavA = document.createElement("A");
     var logoutTextA = document.createTextNode("Logout");         // Create a text node
