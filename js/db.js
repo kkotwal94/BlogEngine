@@ -12,8 +12,10 @@ var loginCallback = function(error, authData) {
         var loginStatus = document.getElementById("login-status");
         if (error) {
                 loginStatus.innerHTML = ("Login Failed!: ", error);
+                console.log(authData);
         } else {
             loginStatus.innerHTML = ("Authenticated successfully with payload: ", authData);
+            
             updatingNav();
             modal.style.display = "none";
             changePageTo("about");
@@ -118,20 +120,28 @@ var addUserName = function(userid) {
         });
     };
     
-var addBlogPost = function(blogPost, userid, title) { //could either pass in a blog post or just grab it off screen
-        var blogPost = document.getElementById('blog').value; //get where ever a submitted form / post is, maybe have a button that goes to a confirmation page before the post, if not sent back to editor, else post
-        var blogRef = new Firebase('https://scorching-heat-6412.firebaseio.com/users/' + userid +'/blogs/');
+var addBlogPost = function(blogPost, userid, title, tags) { //could either pass in a blog post or just grab it off screen
+    
+        console.log(userid);
+        
+        //var blogPost = document.getElementById('blog').value; //get where ever a submitted form / post is, maybe have a button that goes to a confirmation page before the post, if not sent back to editor, else post
+        var blogRef = new Firebase('https://scorching-heat-6412.firebaseio.com/users/' + userid.uid +'/blogs/');
+        var key = blogRef.key();
         blogRef.set({
-            blog_content: blog
+            title_blog: title,
+            blog_content: blogPost,
+            tags_included: tags
         },
 
         function(error) {
             if (error) {
                 var status = document.getElementById("status");
                 status.innerHTML = ("Error adding blog post: ", error);
+                console.log("failed poopoo");
             } else {
                 var status = document.getElementById("status");
                 status.innerHTML = ("Successfully added blog post for: ", userid);
+                console.log("successful");
             }
         });
     };    
@@ -173,7 +183,7 @@ var childAddedFunction = function(snapshot) {
     var key = snapshot.key(); //return the key for the item
     var blogItem = snapshot.val(); //returns the value of the item as JSON
     console.log("Key - " + key + " has been added");
-    // buildNewBlogPost(blogItem, key); //adds the new blog to the list (need something like this)
+    addBlogPost(blogItem, key); //adds the new blog to the list (need something like this)
     // $("#lists .status").fadeIn(400).html('New item added!')
 }
 var childChangedFunction = function(snapshot) {
@@ -264,3 +274,5 @@ var addListItem = function(content) {
         itemRef.remove();
     }
     */
+    
+    console.log(userData);

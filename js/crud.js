@@ -95,6 +95,8 @@ var postContent = function() {
     
     console.log("Our tags");
     console.log(tags);
+    
+    addBlogPost(bodyHTML, userData, titleHTML, tags);
 };
 
 var getTags = function() {
