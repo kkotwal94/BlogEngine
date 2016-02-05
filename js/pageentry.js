@@ -83,16 +83,7 @@ if(userData != null) {
         var myPosts = document.getElementById("myPosts");
     console.log("In page entry we are still logged in");
     var creatingStory = document.getElementById("creatingStory");
-userRef.on("value", function(snapshot) {
-        userDatum = snapshot.val();
-        //console.log(userDatum);
-        //console.log(userData);
-        console.log("getting user data");
-        },
-        function(errorObject) {
-            console.log("Error here : " + errorObject.code);
     
-});
      creatingStory.style.display="block";
      console.log(userData);
         console.log(userDatum);
@@ -121,6 +112,7 @@ else {
         if(locPath == "post") {
              getSinglePostData(locPaths[2]);
             container.innerHTML = innerPost.innerHTML;
+            updatingNav();
         }
         
         

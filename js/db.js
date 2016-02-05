@@ -147,6 +147,10 @@ var createDashboardFeed = function() {
             var shareText = document.createTextNode("SHARE");
             var saveText = document.createTextNode("SAVE");
             var viewText = document.createTextNode("VIEW");
+            
+            var likeIcon = document.createElement('I');
+            likeIcon.className = "fa fa-heart";
+            
             cardMedium.className = "card card--medium";
             
             titleElement.className = "card__title";
@@ -185,6 +189,7 @@ var createDashboardFeed = function() {
             actionBar.appendChild(shareButton);
             actionBar.appendChild(saveButton);
             actionBar.appendChild(viewButton);
+            actionBar.appendChild(likeIcon);
             
             
             cardMedium.appendChild(titleElement);
