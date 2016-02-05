@@ -68,4 +68,10 @@ app.get('/politics', function(req, res) {
 app.get('/literatureart', function(req, res) {
    res.sendFile(__dirname + '/index.html'); 
 });
+
+app.get('/post/:id', function(req, res) {
+   res.sendFile(__dirname + '/index.html'); 
+});
+
+
 app.use(express.static(__dirname +'/'));

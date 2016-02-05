@@ -95,8 +95,15 @@ var postContent = function() {
     
     console.log("Our tags");
     console.log(tags);
-    
-    addBlogPost(bodyHTML, userData, titleHTML, tags);
+    console.log(userData);
+    if(userData != null) {
+        addBlogPost(bodyHTML, userData, titleHTML, tags);
+        tags = [];
+        var tagList = document.getElementById('taggers');
+        tagList.innerHTML = "";
+    } else {
+        modal.style.display = "block";
+    }
 };
 
 var getTags = function() {

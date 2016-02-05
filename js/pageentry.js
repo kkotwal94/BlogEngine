@@ -1,9 +1,13 @@
      var handleHash = function(){
         var container = document.getElementById('container');
         var dashboard = document.getElementById('dashboard');
-        var locPath = location.pathname.split('/');
-        locPath = locPath[1];
+        var innerPost = document.getElementById('innerPost');
+        var locPaths = location.pathname.split('/');
+        var size = locPaths.length;
+        locPath = locPaths[1];
         console.log(locPath);
+        //getInitialBlogData();
+        
         if(location.pathname == "/") {
             container.innerHTML = dashboard.innerHTML;
             
@@ -96,13 +100,32 @@
     }
 });
 
+if(userData != null) {
+    console.log("In page entry we are still logged in");
+    updatingNav();
+}
 
+else {
+    console.log("In page entry dashboard we are logged out");
+}
 
-        } else {
+        }
+        
+        
+        
+        
+        if(locPath == "post") {
+             getSinglePostData(locPaths[2]);
+            container.innerHTML = innerPost.innerHTML;
+        }
+        
+        
+        else {
              var container = document.getElementById('container');
              var fillingWithElement = document.getElementById(locPath);
+             if(fillingWithElement != null) {
             container.innerHTML = fillingWithElement.innerHTML;
-        
+             }
 var Selections = [{
         name: 'link',
         buttons: ['linkEdit'],
@@ -165,6 +188,15 @@ var Selections = [{
         }
     }
 });
+
+if(userData != null) {
+    console.log("In page entry we are still logged in");
+     updatingNav();
+}
+
+else {
+    console.log("In page entry dashboard we are logged out");
+}
 
 }
         

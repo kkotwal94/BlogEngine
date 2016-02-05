@@ -7,16 +7,16 @@
 
 	<link href='https://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'>
 	    
-	<link href='css/reset.css' rel='stylesheet' type='text/css'>
+	<link href='/css/reset.css' rel='stylesheet' type='text/css'>
     
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
     
-    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
     
-    <link rel="stylesheet" href="css/input.css">
-    <link rel="stylesheet" href="css/login.css">
-     <link rel="stylesheet" href="css/card.css">
+    <link rel="stylesheet" href="/css/input.css">
+    <link rel="stylesheet" href="/css/login.css">
+     <link rel="stylesheet" href="/css/card.css">
     <!--
     
     <link rel="stylesheet" href="node_modules/medium-editor/dist/css/medium-editor.css">
@@ -29,9 +29,9 @@
     
     
     
-    <script type="text/javascript" charset="utf-8" src="js/pageentry.js"></script>
-    <link href="node_modules/alloyeditor/dist/alloy-editor/assets/alloy-editor-atlas-min.css" rel="stylesheet">
-     <script src="node_modules/alloyeditor/dist/alloy-editor/alloy-editor-all-min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/js/pageentry.js"></script>
+    <link href="/node_modules/alloyeditor/dist/alloy-editor/assets/alloy-editor-atlas-min.css" rel="stylesheet">
+     <script src="/node_modules/alloyeditor/dist/alloy-editor/alloy-editor-all-min.js"></script>
     
 </head>
 <body>
@@ -44,7 +44,7 @@
 		
 
 		<nav class="cd-main-nav-wrapper" id="nav">
-			<div class="cd-logo"><a href="/"><img src="images/cd-logo.svg" alt="Logo"></a></div>
+			<div class="cd-logo"><a href="/"><img src="/images/cd-logo.svg" alt="Logo"></a></div>
 			<ul id = "loge" class="cd-main-nav">
 
 				<li><a  id="pp" href="#popularposts">High Rated Blogs</a></li>
@@ -124,6 +124,7 @@
 	              
 	        </div>
 	        
+	        
 	        <div class="card__action-bar-nonabs">
 	                <button class="card__button">POST</button>
 	                <button class="card__button">SAVE</button>
@@ -132,67 +133,9 @@
 
         	
 	    	<h1>Blog Featured Feeds</h1>
-	    	<div class="card card--medium">
-	         
-	              <h2 class="card__title">Kangaroo Valley Safari</h2><span class="card__subtitle">By Mattia Astorino</span>
-	              <p class="card__text">Located two hours south of Sydney in the Southern Highland of New South Wales...</p>
-	              <div class="card__action-bar">
-	                <button class="card__button">SHARE</button>
-	                <button class="card__button">LEARN MORE</button>
-	          </div>
-	        </div>
-	        
+	    	<div id="feed">
 	    
-    		<div class="card card--medium">
-	         
-	              <h2 class="card__title">Kangaroo Valley Safari</h2><span class="card__subtitle">By Mattia Astorino</span>
-	              <p class="card__text">Located two hours south of Sydney in the Southern Highland of New South Wales...</p>
-	              <div class="card__action-bar">
-	                <button class="card__button">SHARE</button>
-	                <button class="card__button">LEARN MORE</button>
-	          </div>
-	        </div>
-        
-       	<div class="card card--medium">
-	         
-	              <h2 class="card__title">Kangaroo Valley Safari</h2><span class="card__subtitle">By Mattia Astorino</span>
-	              <p class="card__text">Located two hours south of Sydney in the Southern Highland of New South Wales...</p>
-	              <div class="card__action-bar">
-	                <button class="card__button">SHARE</button>
-	                <button class="card__button">VIEW POST</button>
-	          </div>
-	        </div>
-        
-        	<div class="card card--medium">
-	         
-	              <h2 class="card__title">Kangaroo Valley Safari</h2><span class="card__subtitle">By Mattia Astorino</span>
-	              <p class="card__text">Located two hours south of Sydney in the Southern Highland of New South Wales...</p>
-	              <div class="card__action-bar">
-	                <button class="card__button">SHARE</button>
-	                <button class="card__button">VIEW POST</button>
-	          </div>
-	        </div>
-	        
-	        	<div class="card card--medium">
-	         
-	              <h2 class="card__title">Kangaroo Valley Safari</h2><span class="card__subtitle">By Mattia Astorino</span>
-	              <p class="card__text">Located two hours south of Sydney in the Southern Highland of New South Wales...</p>
-	              <div class="card__action-bar">
-	                <button class="card__button">SHARE</button>
-	                <button class="card__button">VIEW POST</button>
-	          </div>
-	        </div>
-	        
-	        	<div class="card card--medium">
-	         
-	              <h2 class="card__title">Kangaroo Valley Safari</h2><span class="card__subtitle">By Mattia Astorino</span>
-	              <p class="card__text">Located two hours south of Sydney in the Southern Highland of New South Wales...</p>
-	              <div class="card__action-bar">
-	                <button class="card__button">SHARE</button>
-	                <button class="card__button">VIEW POST</button>
-	          </div>
-	        </div>
-        
+        </div>
         	</div>
         	
         	<div class="col col-3-12" id="tags"  style="padding-top: 50px">
@@ -271,7 +214,9 @@
 	
 	</div>
    		<button class="btn" type="button" onclick="return postContent();"><span>Publish</span></button>
-
+    <div id="successPost">
+        
+    </div>
     </div>
     
     <div id ="comedy" class="notVisible">
@@ -310,6 +255,10 @@
     	<p>You are on <span id="pnum">Search page cuz</span></p>
     </div>
     
+    
+    <div id ="innerPost" class="notVisible">
+         <p>We are in a specific post</p>
+    </div>
     <div class="modal" id="myModal">
     <div class="modal-content" id="modcontent">
     
@@ -392,12 +341,12 @@
 
    
     <script type="text/javascript" src="https://cdn.firebase.com/js/client/2.2.3/firebase.js"></script>	
-    <script src="js/render.js"></script>
-    <script src="js/mobilenavbar.js"></script>
-    <script src="js/db.js"></script>
-    <script src="js/rippleEffect.js"></script>
-    <script src="js/classie.js"></script>
-    <script src="js/crud.js"></script>
+    <script src="/js/render.js"></script>
+    <script src="/js/mobilenavbar.js"></script>
+    <script src="/js/db.js"></script>
+    <script src="/js/rippleEffect.js"></script>
+    <script src="/js/classie.js"></script>
+    <script src="/js/crud.js"></script>
     
 
 </body>

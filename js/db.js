@@ -1,4 +1,4 @@
-
+var count = 0;
 var firebaseref = new Firebase("https://scorching-heat-6412.firebaseio.com/");
 console.log("Im in db.js");
 var logoutButton = document.getElementById("logout");
@@ -6,7 +6,147 @@ var generalNav = document.getElementById("loge");
 var modal = document.getElementById('myModal');
 var removedLoginNav = null;
 var addedLogoutNav = null;
+var blogdata = [];
+var userData;
 
+var blogref = new Firebase("https://scorching-heat-6412.firebaseio.com/blogs");
+
+
+blogref.on("value", function(snapshot) {
+  blogdata = snapshot.val();
+  console.log(blogdata);
+  createDashboardFeed();
+}, function (errorObject) {
+  console.log("The read failed: " + errorObject.code);
+});
+
+
+/*var getInitialBlogData = function() {
+
+    var blogref = new Firebase("https://scorching-heat-6412.firebaseio.com/blogs");
+
+
+blogref.on("value", function(snapshot) {
+  blogdata = snapshot.val();
+  console.log(blogdata);
+}, function (errorObject) {
+  console.log("The read failed: " + errorObject.code);
+});
+
+}*/
+
+var getSinglePostData = function(id) {
+    //console.log(id);
+    var innerPost = document.getElementById('container');
+    blogref.orderByKey().equalTo(id).on("child_added", function(snapshot) {
+       console.log(snapshot.val()); 
+       
+       innerPost.innerHTML = null;
+       
+       var title = document.createElement('DIV');
+       title.innerHTML = snapshot.val().title_blog;
+       
+       var body = document.createElement('DIV');
+       body.innerHTML = snapshot.val().blog_content;
+       
+       innerPost.appendChild(title);
+       innerPost.appendChild(body);
+    });
+}
+
+function strip(html)
+{
+   var tmp = document.createElement("DIV");
+   tmp.innerHTML = html;
+   return tmp.textContent || tmp.innerText || "";
+}
+
+var createDashboardFeed = function() {
+    var feedElement = document.getElementById("feed");
+    feedElement.innerHTML = "";
+    var data = blogdata;
+    console.log("In dashboard feed");
+    console.log(data);
+    for(var key in data) {
+        var title =strip(data[key].title_blog);
+        var author =data[key].user_id.password.email;
+        var content =strip(data[key].blog_content);
+
+            var cardMedium = document.createElement('DIV');
+            var titleElement = document.createElement('H2');
+            var authorElement = document.createElement('SPAN')
+            var cardElement = document.createElement('P');
+            var actionBar = document.createElement('DIV');
+            var shareButton = document.createElement('BUTTON');
+            var saveButton = document.createElement('BUTTON');
+            var viewButton = document.createElement('BUTTON');
+            var viewLink = document.createElement('A');
+            
+            var titleText = document.createTextNode(title);
+            var authorText = document.createTextNode(author);
+            var cardText = document.createTextNode(content);
+            var shareText = document.createTextNode("SHARE");
+            var saveText = document.createTextNode("SAVE");
+            var viewText = document.createTextNode("VIEW");
+            cardMedium.className = "card card--medium";
+            
+            titleElement.className = "card__title";
+            titleElement.appendChild(titleText);
+            
+            authorElement.className = "card__subtitle";
+            authorElement.appendChild(authorText);
+            
+            cardElement.className="card__text";
+            cardElement.appendChild(cardText);
+            
+            actionBar.className = "card__action-bar";
+            
+            shareButton.className = "card__button";
+            shareButton.appendChild(shareText);
+            
+            saveButton.className = "card__button";
+            saveButton.appendChild(saveText);
+            
+            viewButton.className = "card__button";
+            viewLink.id="nestedRoute";
+            viewLink.href="/post/" + key;
+            //viewButton.onclick=function() {return nestedonClick();};
+            viewLink.appendChild(viewText);
+            viewButton.appendChild(viewLink);
+            
+            viewButton.addEventListener('click', function(ev) {
+               ev.preventDefault();
+               console.log("Navigating to nested route");
+               
+               var fakeURL = ev.target.getAttribute('href');
+               console.log("Fake URL: " + fakeURL);
+               changePageTo(fakeURL);
+            });
+
+            actionBar.appendChild(shareButton);
+            actionBar.appendChild(saveButton);
+            actionBar.appendChild(viewButton);
+            
+            
+            cardMedium.appendChild(titleElement);
+            cardMedium.appendChild(authorElement);
+            cardMedium.appendChild(cardElement);
+            cardMedium.appendChild(actionBar);
+            feedElement.appendChild(cardMedium);
+    }
+}
+
+
+
+
+
+
+var getHTTP = function(theUrl){
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+         xmlHttp.send( null );
+        return xmlHttp.responseText;
+        }
 
 var loginCallback = function(error, authData) {
         var loginStatus = document.getElementById("login-status");
@@ -18,7 +158,7 @@ var loginCallback = function(error, authData) {
             
             updatingNav();
             modal.style.display = "none";
-            changePageTo("about");
+            //changePageTo("about");
            }
 }
 
@@ -31,7 +171,7 @@ var signupLoginCallback = function(error, authData) {
                 addUserName(userData.uid);
                 updatingNav();
                 modal.style.display = "none";
-                changePageTo("about");
+                //changePageTo("about");
         }
 }
 
@@ -106,7 +246,7 @@ firebaseref.onAuth(authDataCallback);
 var addUserName = function(userid) {
         var regStatus = document.getElementById("reg-status");
         var name = document.getElementById('name').value;
-        var userRef = new Firebase('https://scorching-heat-6412.firebaseio.com/users/' + userid);
+        userRef = new Firebase('https://scorching-heat-6412.firebaseio.com/users/' + userid);
         userRef.set({
             full_name: name
         },
@@ -123,25 +263,115 @@ var addUserName = function(userid) {
 var addBlogPost = function(blogPost, userid, title, tags) { //could either pass in a blog post or just grab it off screen
     
         console.log(userid);
-        
+        var id = getHTTP('http://guid.setgetgo.com/get.php');
+        id = id.slice(1,-1);
+        var date = new Date();
+        var dateString = ((date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear());
+        var dateTime = (new Date().toTimeString().split(" ")[0]);
         //var blogPost = document.getElementById('blog').value; //get where ever a submitted form / post is, maybe have a button that goes to a confirmation page before the post, if not sent back to editor, else post
-        var blogRef = new Firebase('https://scorching-heat-6412.firebaseio.com/users/' + userid.uid +'/blogs/');
+        var blogRef = new Firebase('https://scorching-heat-6412.firebaseio.com/users/' + userid.uid +'/blogs/' + id);
+        var blogScheme = new Firebase('https://scorching-heat-6412.firebaseio.com/blogs/' + id);
         var key = blogRef.key();
+        //key = key.slice(1, -1);
+        console.log(key);
         blogRef.set({
+            user_id: userid,
             title_blog: title,
             blog_content: blogPost,
-            tags_included: tags
+            tags_included: tags,
+            likes: 0,
+            date: dateString,
+            timestamp: dateTime
+            
+            
         },
+        
+    
 
         function(error) {
             if (error) {
-                var status = document.getElementById("status");
-                status.innerHTML = ("Error adding blog post: ", error);
+                var status = document.getElementById("successPost");
+                status.innerHTML ="";
+                var statusText = document.createElement("H1");
+                var textNode = document.createTextNode("Failed to create blog for: " + userid.password.email);
+                statusText.appendChild(textNode);
+                status.appendChild(statusText);
                 console.log("failed poopoo");
             } else {
-                var status = document.getElementById("status");
-                status.innerHTML = ("Successfully added blog post for: ", userid);
-                console.log("successful");
+                 var status = document.getElementById("successPost");
+                status.innerHTML ="";
+                var statusText = document.createElement("H1");
+                var textNode = document.createTextNode("Successfully added blog post for: " + userid.password.email);
+                statusText.appendChild(textNode);
+               
+                var linkText = document.createElement("H1");
+                var textNode = document.createTextNode("View the post here");
+                var ref = document.createElement("A");
+                ref.href="/post/" + key;
+                ref.appendChild(textNode)
+                
+                ref.addEventListener('click', function(ev) {
+               ev.preventDefault();
+               console.log("Navigating to nested route");
+               
+               var fakeURL = ev.target.getAttribute('href');
+               console.log("Fake URL: " + fakeURL);
+               changePageTo(fakeURL);
+            });
+                linkText.appendChild(ref);
+                
+                status.appendChild(statusText);
+                status.appendChild(linkText);
+            }
+        });
+        
+        
+         blogScheme.set({
+            user_id: userid,
+            title_blog: title,
+            blog_content: blogPost,
+            tags_included: tags,
+            like: 0,
+            date: dateString,
+            timestamp: dateTime
+            
+        }, 
+        
+       function(error) {
+            if (error) {
+                 var status = document.getElementById("successPost");
+                status.innerHTML ="";
+                var statusText = document.createElement("H1");
+                var textNode = document.createTextNode("Failed to create blog for: " + userid.password.email);
+                statusText.appendChild(textNode);
+                status.appendChild(statusText);
+                console.log("failed poopoo");
+            } else {
+                var status = document.getElementById("successPost");
+                status.innerHTML ="";
+                var statusText = document.createElement("H1");
+                var textNode = document.createTextNode("Successfully created blog post for: " + userid.password.email);
+                statusText.appendChild(textNode);
+                
+               
+                var linkText = document.createElement("H1");
+                var textNode = document.createTextNode("View the post here");
+                var ref = document.createElement("A");
+                ref.href="/post/" + key;
+                ref.appendChild(textNode);
+                ref.addEventListener('click', function(ev) {
+               ev.preventDefault();
+               console.log("Navigating to nested route");
+               
+               var fakeURL = ev.target.getAttribute('href');
+               console.log("Fake URL: " + fakeURL);
+               changePageTo(fakeURL);
+            });
+                linkText.appendChild(ref);
+                
+                status.appendChild(statusText);
+                status.appendChild(linkText);
+                console.log("success poopoo");
             }
         });
     };    
@@ -154,7 +384,7 @@ var updatingNav = function() {
     var logoutTextA = document.createTextNode("Logout");         // Create a text node
     logoutNavA.appendChild(logoutTextA);
     logoutNavA.setAttribute("id","logout");
-    logoutNavA.setAttribute("href","#about");
+    //logoutNavA.setAttribute("href","#about");
     logoutNavA.setAttribute("onclick","return logoutButton();");
     logoutNavLi.appendChild(logoutNavA);
     addedLogoutNav = generalNav.children[generalNav.children.length - 1];
@@ -229,6 +459,9 @@ var removeBlogPost = function(key) {
     // $("#lists [data-item-id='" + key + "']").remove();
 }	
 
+
+
+
 /////// imagine this is a handler for a post button
 
 /*
@@ -275,4 +508,4 @@ var addListItem = function(content) {
     }
     */
     
-    console.log(userData);
+    //console.log(userData);

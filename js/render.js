@@ -7,8 +7,29 @@ var historyTracker  = [];
 var renderPage = function(newURL){
   console.log(window.history);
   var dashboard = document.getElementById('dashboard');
+  var innerPage = document.getElementById('innerPost');
   var pageToLoad = document.getElementById(newURL);
-  console.log(pageToLoad);
+  //console.log(pageToLoad);
+  if(newURL != null) {
+  var nestedURL = newURL.split('/');
+  }
+  /*
+  if(newURL == null) {
+      createDashboardFeed();
+      container.innerHTML == dashboard.innerHTML;
+  }
+*/
+
+  if(nestedURL.length > 1) {
+      //grab post data here fam
+      getSinglePostData(nestedURL[nestedURL.length-1]);
+      console.log(window.location.pathname);
+      container.innerHTML = innerPage.innerHTML || dashboard.innerHTML;
+  }
+  
+  
+  else {
+       createDashboardFeed();
   //we are setting the innerhtml here, we would want it to be things based on buttons we click or url we visit
   container.innerHTML = pageToLoad.innerHTML || dashboard.innerHTML;
 	 /*var editor = new MediumEditor('.editable', {
@@ -93,7 +114,7 @@ var renderPage = function(newURL){
     }
 });
 
-
+}
 
 
   //we are changing the links href to decide where we go!
@@ -119,6 +140,8 @@ window.addEventListener('popstate', function(backButtonEvent){
 var nav = document.getElementById('nav');
 var tags = document.getElementById('taggers');
 
+
+
 nav.addEventListener('click', function(ev){
   ev.preventDefault(); //stops the link from executing
   
@@ -132,4 +155,31 @@ nav.addEventListener('click', function(ev){
   }
   }
 });
+
+
+/*
+document.addEventListener('DOMContentLoaded', function() {
+var nestedRoute = document.getElementById('nestedRoute');
+
+console.log(nestedRoute);
+
+nestedRoute.addEventListener('click', function(ev) {
+   ev.preventDefault();
+   console.log("Navigating to nested route");
+   
+   var fakeURL = ev.target.getAttribute('href');
+   console.log("Fake URL: " + fakeURL);
+   changePageTo(fakeURL);
+});
+});
+
+*/
+/*var nestedonClick = function() {
+    event.preventDefault();
+    
+    var fakeURL = event.target.getAttribute('href');
+   console.log("Fake URL: " + fakeURL);
+   changePageTo(fakeURL);
+};*/
+
 
