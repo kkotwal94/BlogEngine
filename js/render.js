@@ -10,8 +10,10 @@ var renderPage = function(newURL){
   var innerPage = document.getElementById('innerPost');
   var pageToLoad = document.getElementById(newURL);
   var nestedURL = [];
+ 
   //console.log(pageToLoad);
   if(newURL != null) {
+      
    nestedURL = newURL.split('/');
   }
   /*
@@ -19,7 +21,8 @@ var renderPage = function(newURL){
       createDashboardFeed();
       container.innerHTML == dashboard.innerHTML;
   }
-*/
+*/  
+    console.log(newURL);
     console.log(nestedURL);
   if(nestedURL.length > 2) {
       //grab post data here fam
@@ -36,7 +39,9 @@ var renderPage = function(newURL){
       
       if(nestedURL[1] == "profile") {
           console.log("In profile");
-        getSingleProfileData(nestedURL[2]);
+        //getSingleProfileData(nestedURL[2]);
+        createProfileView();
+        container.innerHTML = document.getElementById('profileView').innerHTML;
         console.log(window.location.pathname);
       }
       
@@ -46,8 +51,10 @@ var renderPage = function(newURL){
   
   
   else {
-       createDashboardFeed();
-       var myName = document.getElementById("myName");
+      
+if(newURL == '/') {
+    console.log("in this else if");
+    var myName = document.getElementById("myName");
         var myPosts = document.getElementById("myPosts");
         
        for(var key in userDatum) {
@@ -56,8 +63,31 @@ var renderPage = function(newURL){
                     myPosts.innerHTML = userDatum[key].posts;
                 }
             }
+            
+     createDashboardFeed();
+      container.innerHTML =  dashboard.innerHTML;
+  } else {
+       
+       
   //we are setting the innerhtml here, we would want it to be things based on buttons we click or url we visit
-  container.innerHTML = pageToLoad.innerHTML || dashboard.innerHTML;
+  if(pageToLoad == null) {
+      var load = dashboard.innerHTML;
+  } else {
+      var load = pageToLoad.innerHTML;
+  }
+  
+  var myName = document.getElementById("myName");
+        var myPosts = document.getElementById("myPosts");
+        
+       for(var key in userDatum) {
+                if(key == userData.uid) {
+                    myName.innerHTML = userDatum[key].full_name;
+                    myPosts.innerHTML = userDatum[key].posts;
+                }
+            }
+            createDashboardFeed();
+            
+  container.innerHTML = load;
 	 
  var Selections = [{
         name: 'link',
@@ -121,7 +151,7 @@ var renderPage = function(newURL){
         }
     }
 });
-
+}
 }
 
 
@@ -141,6 +171,19 @@ var changePagesTo = function(newURL){
   //URL only changes in normal sites not codepen...
   renderPage(newURL);
 };
+
+var changePageToMyProfile = function(newURL){
+  history.pushState({typeofpage: newURL}, "Page Title", newURL+ '/' + userData.uid);
+  //URL only changes in normal sites not codepen...
+  renderPage(newURL + '/' + userData.uid);
+};
+
+var changePageToHome = function() {
+     history.pushState({typeofpage: '/'}, "Page Title", '/');
+     
+     renderPage('/');
+};
+
 
 window.addEventListener('popstate', function(backButtonEvent){
   pageNumberData -= 1;

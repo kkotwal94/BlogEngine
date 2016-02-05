@@ -162,11 +162,11 @@ var createDashboardFeed = function() {
             likeIcon.style.color="red";
             likeIcon.id = key;
            likeIcon.addEventListener('click', function(event) {
-               var data2 = userDatum;
+               
+               if(userData!=null) {
+                   var data2 = userDatum;
               var uid = userData.uid;
               var doesContain = false;
-               if(userData!=null) {
-                   
             //=====================================Check if we already upvoted
             if(data2[uid].postUpvoted == null ||data2[uid].postUpvoted == undefined ){
                     var whatIliked = [];
@@ -295,7 +295,7 @@ var createDashboardFeed = function() {
             authorElement.className = "card__subtitle";
             authorElement.appendChild(authorText);
             
-            cardElement.className="card__text";
+            cardElement.className="card__text activeOverflow";
             cardElement.appendChild(cardText);
             
             actionBar.className = "card__action-bar";
@@ -322,8 +322,8 @@ var createDashboardFeed = function() {
                changePagesTo(fakeURL);
             });
 
-            actionBar.appendChild(shareButton);
-            actionBar.appendChild(saveButton);
+            //actionBar.appendChild(shareButton);
+            //actionBar.appendChild(saveButton);
             actionBar.appendChild(viewButton);
             actionBar.appendChild(likeIcon);
             actionBar.appendChild(numberLikes);
@@ -632,118 +632,256 @@ var updatingNav = function() {
     console.log(addedLogoutNav);
 }
 
-//setting up firebase built in events
-var setUpFirebaseEvents = function() 
-{
-    var blogRef = new Firebase('https://scorching-heat-6412.firebaseio.com/users/' + userid +'/blogs/');
-    // $("#sharedlist").html(''); //he uses jquery to set a shared list to blank, we can set it to something else
-    blogRef.off('child_added', childAddedFunction)
-    blogRef.on("child_added", childAddedFunction);
-
-    blogRef.off('child_changed', childChangedFunction);
-    blogRef.on('child_changed', childChangedFunction);
-
-    blogRef.off('child_removed', childRemovedFunction);
-    blogRef.on('child_removed', childRemovedFunction);
-}
-
-var childAddedFunction = function(snapshot) {
-    var key = snapshot.key(); //return the key for the item
-    var blogItem = snapshot.val(); //returns the value of the item as JSON
-    console.log("Key - " + key + " has been added");
-    addBlogPost(blogItem, key); //adds the new blog to the list (need something like this)
-    // $("#lists .status").fadeIn(400).html('New item added!')
-}
-var childChangedFunction = function(snapshot) {
-    var blogItem = snapshot.val();
-    var key = snapshot.key();
-    console.log("Key - " + key + " has been changed");
-    // updateBlogList(blogItem, key); //updates the position of the item (need something like this)
-}
-var childRemovedFunction = function(snapshot) {
-    var key = snapshot.key();
-    // removeBlogPost(key); //remove the list item (need something like this)
-    console.log('Child Removed');
-}
-
-// functions for building blog posts
-
-var buildNewBlogPost = function(blogItem, key) 
-{
-    var author = blogItem.author;
-    var content = blogItem.content;
-    var timestamp = blogItem.timestamp;
-    var id = key;
-    var css = blogItem.css;
-    // var $newListItem = $("<li data-item-id='" + id + "'></li>").html("<p class='itemauthor'>Added By - " + author +
-    // "<span class='removebtn'><i class='fa fa-remove'></i></span> " +
-    // "<span class='time'> on " + timestamp + "</span></p><p class='itemtext'>" + content + "</p>");
-    // $newListItem.prependTo($("#sharedlist"));
-    // $newListItem.attr('style', css);
-    // $("#sharedlist").prepend($newListItem);
-    // bindEventsToItems($newListItem); // this function makes the item draggable and adds the remove button event. You can extend this function to create more functionality.
-}
-
-var updateBlogList = function(blogItem, key) {
-    var author = blogItem.author;
-    var content = blogItem.content;
-    var timestamp = blogItem.timestamp;
-    var id = key;
-    var css = blogItem.css;
-    // $("#lists [data-item-id='" + id + "']").attr('style', css);
-}
-
-var removeBlogPost = function(key) {
-    // $("#lists [data-item-id='" + key + "']").remove();
-}	
 
 
 
 
-/////// imagine this is a handler for a post button
-
-/*
-$("#addItemToList").on('click', function() {
-        var $content = $("#listitem");
-        var content = $content.val();
-        if (content === "") {
-            $("#lists .status").html('Please enter the text for the new item!').fadeIn(400);
-            return;
-        }
-        $("#listitem").val('');
-        addListItem(content);
-    });
     
-var addListItem = function(content) {
-        var postsRef = listRef;
-        var x = Date();
-        var random = randomIntFromInterval(1, 400);
-        var randomColor = getRandomRolor();
-        var topzindex = $("#sharedlist li").getMaxZ() + 1;
-        $temp = $("<li></li>");
-        $temp.css({
-            'position': 'absolute',
-            'top': random + 'px',
-            'left': random / 2 + 'px',
-            'background': randomColor,
-            'z-index': topzindex
-        });
-        var css = $temp.attr('style');
-        try {
-            var newItemRef = postsRef.push({
-                author: userData.fullname,
-                content: content,
-                timestamp: x,
-                css: css
+    var createProfileView = function() {
+        console.log(userDatum);
+    var title = userDatum[userData.uid].full_name;
+     var h1 = document.getElementById('myNameTitle');
+    h1.innerHTML = "";
+    var text = document.createTextNode(title);
+    
+    h1.appendChild(text);
+    
+    
+    console.log("createProfileView is Running");
+    var profileElement = document.getElementById("profileCards");
+   profileElement.innerHTML = "";
+    var data = userDatum;
+    console.log(userDatum);
+    var locPaths = location.pathname.split('/');
+    for(var key in data) {
+        // console.log(key + "got there");
+        console.log(key + "this is key");
+        console.log(userData.uid + "this is uid");
+        if (key == userData.uid){
+            console.log(key + " got in the if statement");
+            data = data[key].blogs;
+            for (var key in data){
+                var title =strip(data[key].title_blog);
+                console.log(title);
+                var author =data[key].user_id.password.email;
+                console.log(author);
+                var content =strip(data[key].blog_content);
+                console.log(content);
+                var like = data[key].like;
+                // create the element for each blog post jawn
+            var cardMedium = document.createElement('DIV');
+            var titleElement = document.createElement('H2');
+            var authorElement = document.createElement('SPAN')
+            var cardElement = document.createElement('P');
+            var actionBar = document.createElement('DIV');
+            var shareButton = document.createElement('BUTTON');
+            var saveButton = document.createElement('BUTTON');
+            var viewButton = document.createElement('BUTTON');
+            var viewLink = document.createElement('A');
+            
+            var profileCards = document.getElementById("profileCards");
+            var titleText = document.createTextNode(title);
+            var authorText = document.createTextNode(author);
+            var cardText = document.createTextNode(content);
+            var shareText = document.createTextNode("SHARE");
+            var saveText = document.createTextNode("SAVE");
+            var viewText = document.createTextNode("VIEW");
+            
+             var numberLikes = document.createElement("SPAN");
+            var numberText = document.createTextNode(like);
+            
+            numberLikes.style.paddingLeft = "10px";
+            numberLikes.appendChild(numberText);
+            
+            var likeIconed = document.createElement('I');
+            likeIconed.className = "fa fa-heart";
+            likeIconed.style.color="red";
+            likeIconed.id = key;
+            
+            //==========================
+           
+           
+            
+            //=========================
+            
+            cardMedium.className = "card card--medium";
+            
+            titleElement.className = "card__title";
+            titleElement.appendChild(titleText);
+            
+            authorElement.className = "card__subtitle";
+            authorElement.appendChild(authorText);
+            
+            cardElement.className="card__text activeOverflow";
+            cardElement.appendChild(cardText);
+            
+            actionBar.className = "card__action-bar";
+            
+            shareButton.className = "card__button";
+            shareButton.appendChild(shareText);
+            
+            saveButton.className = "card__button";
+            saveButton.appendChild(saveText);
+            
+            viewButton.className = "card__button";
+            viewLink.id="nestedRoute";
+            viewLink.href="/post/" + key;
+            //viewButton.onclick=function() {return nestedonClick();};
+            viewLink.appendChild(viewText);
+            viewButton.appendChild(viewLink);
+            
+            viewButton.addEventListener('click', function(ev) {
+               ev.preventDefault();
+               console.log("Navigating to nested route");
+               
+               var fakeURL = ev.target.getAttribute('href');
+               console.log("Fake URL: " + fakeURL);
+               changePagesTo(fakeURL);
             });
-        } catch (e) {
-            $("#lists").find(".status").html(e);
+            
+             likeIconed.addEventListener('click', function(event) {
+                console.log("Hello..?");
+               
+               if(userData!=null) {
+                   var data2 = userDatum;
+              var uid = userData.uid;
+              var doesContain = false;
+            //=====================================Check if we already upvoted
+            if(data2[uid].postUpvoted == null ||data2[uid].postUpvoted == undefined ){
+                    var whatIliked = [];
+                } else {
+                    
+                    var whatIliked = data2[uid].postUpvoted;
+                }
+              
+                for(var i = 0; i < whatIliked.length; i ++){
+                    if(whatIliked[i]== this.id){
+                        console.log("in here..");
+                        doesContain = true;
+                    }
+                    
+                }
+                
+            //========================================================
+                   
+            //======================If we never liked--------
+                   if(doesContain == false) {
+                   if( data[this.id].tags_included == null ||  data[this.id].tags_included == undefined) {
+                      var tagsy = [];
+                   } else { var tagsy = data[this.id].tags_included;}
+                   
+              this.classList.toggle('clicked'); 
+              //console.log(this.id);
+             
+              blogref.child(this.id).set({title_blog: data[this.id].title_blog, user_id: data[this.id].user_id, tags_included: tagsy, blog_content: data[this.id].blog_content, date: data[this.id].date, timestamp: data[this.id].timestamp, like: data[this.id].like + 1});
+              
+              //for updating inner user/bloger schema
+            for(var userkey in data2) {
+                //console.log(userkey);
+                for(var blogkey in data2[userkey]) {
+                    if(blogkey == "blogs"){
+                        //console.log(data2[userkey].blogs);
+                    for(var actualblog in data2[userkey].blogs){
+                       // console.log(actualblog);
+                        //console.log(data2[userkey].blogs[actualblog]);
+                        if(actualblog == this.id) {
+                        //userRef.update({userkey: {blogkey :{"blogs":{ actualblog: {title_blog: data[this.id].title_blog, user_id: data[this.id].user_id, tags_included: tagsy, blog_content: data[this.id].blog_content, date: data[this.id].date, timestamp: data[this.id].timestamp, like: like+1}}}}});
+                        userRef.child(userkey).child(blogkey).child(actualblog).set({title_blog: data[this.id].title_blog, user_id: data[this.id].user_id, tags_included: tagsy, blog_content: data[this.id].blog_content, date: data[this.id].date, timestamp: data[this.id].timestamp, like: like+1});
+                        //console.log(userkey + ": " + blogkey + ": blogs " + ": " + actualblog );
+                            
+                        }
+                    }
+                    
+                  }
+                }
+                
+            }
+             if(doesContain == false) {
+                    whatIliked.push(this.id);
+                    
+                }
+                    userRef.child(uid).set({full_name: data2[uid].full_name, blogs: data2[uid].blogs, posts: data2[uid].posts, postUpvoted: whatIliked});
+                }
+                
+                //==================if we already liked
+                
+                if(doesContain == true){
+
+                   if( data[this.id].tags_included == null ||  data[this.id].tags_included == undefined) {
+                      var tagsy = [];
+                   } else { var tagsy = data[this.id].tags_included;}
+                   
+              this.classList.toggle('clicked'); 
+              //console.log(this.id);
+             
+              blogref.child(this.id).set({title_blog: data[this.id].title_blog, user_id: data[this.id].user_id, tags_included: tagsy, blog_content: data[this.id].blog_content, date: data[this.id].date, timestamp: data[this.id].timestamp, like: data[this.id].like - 1});
+              
+              //for updating inner user/bloger schema
+            for(var userkey in data2) {
+                //console.log(userkey);
+                for(var blogkey in data2[userkey]) {
+                    if(blogkey == "blogs"){
+                        //console.log(data2[userkey].blogs);
+                    for(var actualblog in data2[userkey].blogs){
+                       // console.log(actualblog);
+                        //console.log(data2[userkey].blogs[actualblog]);
+                        if(actualblog == this.id) {
+                        //userRef.update({userkey: {blogkey :{"blogs":{ actualblog: {title_blog: data[this.id].title_blog, user_id: data[this.id].user_id, tags_included: tagsy, blog_content: data[this.id].blog_content, date: data[this.id].date, timestamp: data[this.id].timestamp, like: like+1}}}}});
+                        userRef.child(userkey).child(blogkey).child(actualblog).set({title_blog: data[this.id].title_blog, user_id: data[this.id].user_id, tags_included: tagsy, blog_content: data[this.id].blog_content, date: data[this.id].date, timestamp: data[this.id].timestamp, like: like-1});
+                        //console.log(userkey + ": " + blogkey + ": blogs " + ": " + actualblog );
+                            
+                        }
+                    }
+                    
+                  }
+                }
+                
+            }
+            /*
+             if(doesContain == false) {
+                    whatIliked.push(this.id);
+                    
+                }*/
+                
+                for(var x = 0; x < whatIliked.length; x++) {
+                    if(whatIliked[x] == this.id) {
+                        whatIliked.splice(x, 1);
+                    }
+                }
+                    userRef.child(uid).set({full_name: data2[uid].full_name, blogs: data2[uid].blogs, posts: data2[uid].posts, postUpvoted: whatIliked});
+                }
+               
+                    
+                
+               }
+                        
+           
+               
+               else {
+                   alert("log in please");
+               }
+           
+               
+               
+                   
+               });
+
+            //actionBar.appendChild(shareButton);
+            //actionBar.appendChild(saveButton);
+            actionBar.appendChild(viewButton);
+            actionBar.appendChild(likeIconed);
+            actionBar.appendChild(numberLikes);
+            
+            
+            cardMedium.appendChild(titleElement);
+            cardMedium.appendChild(authorElement);
+            cardMedium.appendChild(cardElement);
+            cardMedium.appendChild(actionBar);
+            profileCards.appendChild(cardMedium);
+            //profileElement.appendChild(cardMedium);
+            }
+            
         }
     }
-    var removeItemFromFirebase = function(key) {
-        var itemRef = new Firebase('https://dazzling-fire-8954.firebaseio.com/lists/sharedlist/items/' + key);
-        itemRef.remove();
-    }
-    */
-    
-    //console.log(userData);
+    //changePagesTo('profile');
+}

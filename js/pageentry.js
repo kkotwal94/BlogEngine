@@ -216,11 +216,28 @@ else {
 
 if(size > 2) {
     if(locPath=="profile") {
-        //getSingleProfileData(locPaths[2]);
-        //create function to grab prof data
-        console.log("im doing this gay shit");
-        getSingleProfileData(locPaths[2], "mine");
-        container.innerHTML = profileView.innerHTML;
+        userRef.on("value", function(snapshot) {
+    userDatum = snapshot.val();
+    //console.log(userDatum);
+    //console.log(userData);
+    var myName = document.getElementById("myName");
+    var myPosts = document.getElementById("myPosts");
+    
+    for(var key in userDatum) {
+                if(key == userData.uid) {
+                    myName.innerHTML = userDatum[key].full_name;
+                    myPosts.innerHTML = userDatum[key].posts;
+                }
+            }
+    console.log("getting user data");
+     createProfileView();
+        container.innerHTML =document.getElementById('profileView').innerHTML;
+    },
+    function(errorObject) {
+        console.log("Error here : " + errorObject.code);
+    
+});
+      
     }
 }
         

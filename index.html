@@ -44,7 +44,7 @@
 		
 
 		<nav class="cd-main-nav-wrapper" id="nav">
-			<div class="cd-logo"><a href="/"><img src="/images/cd-logo.svg" alt="Logo"></a></div>
+			<div class="cd-logo"><a href="/"><img onclick="return changePageToHome();"src="/images/logo2.png" alt="Logo"></a></div>
 			<ul id = "loge" class="cd-main-nav">
 
 				<li><a  id="pp" href="#popularposts">High Rated Blogs</a></li>
@@ -100,9 +100,9 @@
         	<div id="creatingStory" class="createStory" style="padding-top: 50px">
         	<div class="card card--small" style="height:10%">
 	         
-	              <div style="background-image: url(https://placeimg.com/640/480/nature)" class="card__image"></div>
+	              <div style="background-image: url(https://secure.gravatar.com/avatar/db9ada061eb8e861c6efffaf29c1364f?d=retro); background-size: contain;" class="card__image"></div>
 	             <h2 class="card__title" id="myName">Loading Name...</h2><span id="myPosts"class="card__subtitle">Loading post....</span>
-	              <button id="linkProf"  onclick="return changePageTo('profile');" class="btn myProf" style="background-color: red">My Profile</button>
+	              <button id="linkProf"  onclick="return changePageToMyProfile('/profile');" class="btn myProf" style="background-color: red">My Profile</button>
    
  
     
@@ -122,10 +122,10 @@
         	</div>
         	
         	<div class="col col-3-12" id="tags"  style="padding-top: 50px">
-        		<div class="card card--medium">
+        		<div class="card card--medium ">
 	         
 	              <h2 class="card__title">Top Stories</h2>
-	              <ul class="card__text">
+	              <ul class="card__text activeOverflow"">
 	              	<li>Story1</li>
 	              	<li>Story2</li>
 	              	<li>Story3</li>
@@ -255,9 +255,25 @@
     </div>
     
     <div id="profileView" class="notVisible">
-        <div class = "otherProfile">
-            
-        </div>
+            <div class="row group">
+                <h1 id = "myNameTitle"></h1>
+            	<div class="col col-2-12">
+            		
+            	</div>
+            	
+            	<div class="col col-5-12">
+            	    <div id="profileCards">
+            	        
+            	    </div>
+            	</div>
+            	
+            	<div class="col col-3-12">
+            	    <div id="favoritesPosts">
+            	        
+            	    </div>
+            	</div>
+            	
+        	</div>
     </div>
     
     <div class="modal" id="myModal">

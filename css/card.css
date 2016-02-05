@@ -246,6 +246,8 @@
 .card--medium .card__text {
   font-size: 16px;
   top: 50px;
+      height: 50%;
+    overflow-y: visible;
 }
 .card--medium .card__action-bar {
   left: 0;
