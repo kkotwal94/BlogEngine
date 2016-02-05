@@ -832,3 +832,11 @@ p {
 .viewtag {
   padding-top: 40px !important;
 }
+
+.clicked {
+  color: green !important;
+}
+
+#clicked {
+  color: green;
+}

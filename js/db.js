@@ -127,9 +127,12 @@ var createDashboardFeed = function() {
     //console.log("In dashboard feed");
     //console.log(data);
     for(var key in data) {
+        //console.log(key);
+        //console.log(data[key]);
         var title =strip(data[key].title_blog);
         var author =data[key].user_id.password.email;
         var content =strip(data[key].blog_content);
+        var like = data[key].like;
 
             var cardMedium = document.createElement('DIV');
             var titleElement = document.createElement('H2');
@@ -148,9 +151,141 @@ var createDashboardFeed = function() {
             var saveText = document.createTextNode("SAVE");
             var viewText = document.createTextNode("VIEW");
             
+            var numberLikes = document.createElement("SPAN");
+            var numberText = document.createTextNode(like);
+            
+            numberLikes.style.paddingLeft = "10px";
+            numberLikes.appendChild(numberText);
+            
             var likeIcon = document.createElement('I');
             likeIcon.className = "fa fa-heart";
             likeIcon.style.color="red";
+            likeIcon.id = key;
+           likeIcon.addEventListener('click', function(event) {
+               var data2 = userDatum;
+              var uid = userData.uid;
+              var doesContain = false;
+               if(userData!=null) {
+                   
+            //=====================================Check if we already upvoted
+            if(data2[uid].postUpvoted == null ||data2[uid].postUpvoted == undefined ){
+                    var whatIliked = [];
+                } else {
+                    
+                    var whatIliked = data2[uid].postUpvoted;
+                }
+              
+                for(var i = 0; i < whatIliked.length; i ++){
+                    if(whatIliked[i]== this.id){
+                        console.log("in here..");
+                        doesContain = true;
+                    }
+                    
+                }
+                
+            //========================================================
+                   
+            //======================If we never liked--------
+                   if(doesContain == false) {
+                   if( data[this.id].tags_included == null ||  data[this.id].tags_included == undefined) {
+                      var tagsy = [];
+                   } else { var tagsy = data[this.id].tags_included;}
+                   
+              this.classList.toggle('clicked'); 
+              //console.log(this.id);
+             
+              blogref.child(this.id).set({title_blog: data[this.id].title_blog, user_id: data[this.id].user_id, tags_included: tagsy, blog_content: data[this.id].blog_content, date: data[this.id].date, timestamp: data[this.id].timestamp, like: data[this.id].like + 1});
+              
+              //for updating inner user/bloger schema
+            for(var userkey in data2) {
+                //console.log(userkey);
+                for(var blogkey in data2[userkey]) {
+                    if(blogkey == "blogs"){
+                        //console.log(data2[userkey].blogs);
+                    for(var actualblog in data2[userkey].blogs){
+                       // console.log(actualblog);
+                        //console.log(data2[userkey].blogs[actualblog]);
+                        if(actualblog == this.id) {
+                        //userRef.update({userkey: {blogkey :{"blogs":{ actualblog: {title_blog: data[this.id].title_blog, user_id: data[this.id].user_id, tags_included: tagsy, blog_content: data[this.id].blog_content, date: data[this.id].date, timestamp: data[this.id].timestamp, like: like+1}}}}});
+                        userRef.child(userkey).child(blogkey).child(actualblog).set({title_blog: data[this.id].title_blog, user_id: data[this.id].user_id, tags_included: tagsy, blog_content: data[this.id].blog_content, date: data[this.id].date, timestamp: data[this.id].timestamp, like: like+1});
+                        //console.log(userkey + ": " + blogkey + ": blogs " + ": " + actualblog );
+                            
+                        }
+                    }
+                    
+                  }
+                }
+                
+            }
+             if(doesContain == false) {
+                    whatIliked.push(this.id);
+                    
+                }
+                    userRef.child(uid).set({full_name: data2[uid].full_name, blogs: data2[uid].blogs, posts: data2[uid].posts, postUpvoted: whatIliked});
+                }
+                
+                //==================if we already liked
+                
+                if(doesContain == true){
+
+                   if( data[this.id].tags_included == null ||  data[this.id].tags_included == undefined) {
+                      var tagsy = [];
+                   } else { var tagsy = data[this.id].tags_included;}
+                   
+              this.classList.toggle('clicked'); 
+              //console.log(this.id);
+             
+              blogref.child(this.id).set({title_blog: data[this.id].title_blog, user_id: data[this.id].user_id, tags_included: tagsy, blog_content: data[this.id].blog_content, date: data[this.id].date, timestamp: data[this.id].timestamp, like: data[this.id].like - 1});
+              
+              //for updating inner user/bloger schema
+            for(var userkey in data2) {
+                //console.log(userkey);
+                for(var blogkey in data2[userkey]) {
+                    if(blogkey == "blogs"){
+                        //console.log(data2[userkey].blogs);
+                    for(var actualblog in data2[userkey].blogs){
+                       // console.log(actualblog);
+                        //console.log(data2[userkey].blogs[actualblog]);
+                        if(actualblog == this.id) {
+                        //userRef.update({userkey: {blogkey :{"blogs":{ actualblog: {title_blog: data[this.id].title_blog, user_id: data[this.id].user_id, tags_included: tagsy, blog_content: data[this.id].blog_content, date: data[this.id].date, timestamp: data[this.id].timestamp, like: like+1}}}}});
+                        userRef.child(userkey).child(blogkey).child(actualblog).set({title_blog: data[this.id].title_blog, user_id: data[this.id].user_id, tags_included: tagsy, blog_content: data[this.id].blog_content, date: data[this.id].date, timestamp: data[this.id].timestamp, like: like-1});
+                        //console.log(userkey + ": " + blogkey + ": blogs " + ": " + actualblog );
+                            
+                        }
+                    }
+                    
+                  }
+                }
+                
+            }
+            /*
+             if(doesContain == false) {
+                    whatIliked.push(this.id);
+                    
+                }*/
+                
+                for(var x = 0; x < whatIliked.length; x++) {
+                    if(whatIliked[x] == this.id) {
+                        whatIliked.splice(x, 1);
+                    }
+                }
+                    userRef.child(uid).set({full_name: data2[uid].full_name, blogs: data2[uid].blogs, posts: data2[uid].posts, postUpvoted: whatIliked});
+                }
+               
+                    
+                
+               }
+                        
+           
+               
+               else {
+                   alert("log in please");
+               }
+           
+               
+               
+                   
+               });
             
             cardMedium.className = "card card--medium";
             
@@ -191,6 +326,7 @@ var createDashboardFeed = function() {
             actionBar.appendChild(saveButton);
             actionBar.appendChild(viewButton);
             actionBar.appendChild(likeIcon);
+            actionBar.appendChild(numberLikes);
             
             
             cardMedium.appendChild(titleElement);
@@ -199,6 +335,7 @@ var createDashboardFeed = function() {
             cardMedium.appendChild(actionBar);
             feedElement.appendChild(cardMedium);
     }
+
 }
 
 
@@ -238,6 +375,7 @@ var loginCallback = function(error, authData) {
                 }
             }
             
+            
             //changePageTo("about");
            }
 }
@@ -274,6 +412,10 @@ var logoutButton = function(){
         addedLogoutNav.parentNode.removeChild(addedLogoutNav);
         generalNav.insertBefore(removedLoginNav, generalNav.children[generalNav.children.length - 1]);
         creatingStory.style.display = "none";
+        
+       
+        showReg();
+         showLogin();
     };
 
 
