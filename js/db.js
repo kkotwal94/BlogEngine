@@ -150,6 +150,7 @@ var createDashboardFeed = function() {
             
             var likeIcon = document.createElement('I');
             likeIcon.className = "fa fa-heart";
+            likeIcon.style.color="red";
             
             cardMedium.className = "card card--medium";
             
