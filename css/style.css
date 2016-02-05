@@ -828,3 +828,7 @@ p {
 .btn.orange {
   background-color: orange;
 }
+
+.viewtag {
+  padding-top: 40px !important;
+}

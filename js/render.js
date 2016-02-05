@@ -9,9 +9,10 @@ var renderPage = function(newURL){
   var dashboard = document.getElementById('dashboard');
   var innerPage = document.getElementById('innerPost');
   var pageToLoad = document.getElementById(newURL);
+  var nestedURL = [];
   //console.log(pageToLoad);
   if(newURL != null) {
-  var nestedURL = newURL.split('/');
+   nestedURL = newURL.split('/');
   }
   /*
   if(newURL == null) {
@@ -19,38 +20,45 @@ var renderPage = function(newURL){
       container.innerHTML == dashboard.innerHTML;
   }
 */
-
-  if(nestedURL.length > 1) {
+    console.log(nestedURL);
+  if(nestedURL.length > 2) {
       //grab post data here fam
-      getSinglePostData(nestedURL[nestedURL.length-1]);
-      console.log(window.location.pathname);
-      container.innerHTML = innerPage.innerHTML || dashboard.innerHTML;
+      console.log(nestedURL);
+      
+      if(nestedURL[1] == "post") {
+          console.log("In post");
+          
+        getSinglePostData(nestedURL[2], "mine");
+        
+        console.log(window.location.pathname);
+      }
+      
+      
+      if(nestedURL[1] == "profile") {
+          console.log("In profile");
+        getSingleProfileData(nestedURL[2]);
+        console.log(window.location.pathname);
+      }
+      
+      
+      //container.innerHTML = innerPage.innerHTML || dashboard.innerHTML;
   }
   
   
   else {
        createDashboardFeed();
+       var myName = document.getElementById("myName");
+        var myPosts = document.getElementById("myPosts");
+        
+       for(var key in userDatum) {
+                if(key == userData.uid) {
+                    myName.innerHTML = userDatum[key].full_name;
+                    myPosts.innerHTML = userDatum[key].posts;
+                }
+            }
   //we are setting the innerhtml here, we would want it to be things based on buttons we click or url we visit
   container.innerHTML = pageToLoad.innerHTML || dashboard.innerHTML;
-	 /*var editor = new MediumEditor('.editable', {
-    toolbar: {
-       
-        allowMultiParagraphSelection: true,
-        buttons: ['bold', 'italic', 'underline', 'anchor', 'h2', 'h3', 'quote'],
-        diffLeft: 0,
-        diffTop: -10,
-        firstButtonClass: 'medium-editor-button-first',
-        lastButtonClass: 'medium-editor-button-last',
-        standardizeSelectionStart: false,
-        static: false,
-        relativeContainer: null,
-        
-        align: 'center',
-        sticky: false,
-        updateOnEmptySelection: false
-    }
-});
-*/
+	 
  var Selections = [{
         name: 'link',
         buttons: ['linkEdit'],
@@ -117,11 +125,18 @@ var renderPage = function(newURL){
 }
 
 
+
   //we are changing the links href to decide where we go!
   //nextPage.setAttribute("href", "page"+n);
 };
 
 var changePageTo = function(newURL){
+  history.pushState({typeofpage: newURL}, "Page Title", "/" + newURL);
+  //URL only changes in normal sites not codepen...
+  renderPage(newURL);
+};
+
+var changePagesTo = function(newURL){
   history.pushState({typeofpage: newURL}, "Page Title", newURL);
   //URL only changes in normal sites not codepen...
   renderPage(newURL);

@@ -97,12 +97,12 @@
         		
         	</div>
         	<div id="randomFeeds" class="col col-5-12">
-        	<div class="createStory" style="padding-top: 50px">
+        	<div id="creatingStory" class="createStory" style="padding-top: 50px">
         	<div class="card card--small" style="height:10%">
 	         
 	              <div style="background-image: url(https://placeimg.com/640/480/nature)" class="card__image"></div>
-	             <h2 class="card__title">Karan Kotwal</h2><span class="card__subtitle">142124 Posts</span>
-	              <button class="btn myProf" style="background-color: red">My Profile</button>
+	             <h2 class="card__title" id="myName">Loading Name...</h2><span id="myPosts"class="card__subtitle">Loading post....</span>
+	              <button id="linkProf"  onclick="return changePageTo('profile');" class="btn myProf" style="background-color: red">My Profile</button>
    
  
     
@@ -110,26 +110,9 @@
 	              
 	        </div>
 	        
-	        
-        	<div class="card card--medium activeOverflow">
-	         
-	             
-	             
-   
-    <div id="Title1" class="editable" ><p>Enter a title here!</p></div>
 
-    <div id="Body1" class="editable"><p>Change the body here</p></div>
-    
-
-	              
-	        </div>
-	        
-	        
-	        <div class="card__action-bar-nonabs">
-	                <button class="card__button">POST</button>
-	                <button class="card__button">SAVE</button>
-	          </div>
         	</div>
+
 
         	
 	    	<h1>Blog Featured Feeds</h1>
@@ -179,7 +162,7 @@
         </div>
         
         <div id="other stuff">
-            Pretend other stuff goes here
+           
         </div>
     </div>
     
@@ -224,7 +207,11 @@
     </div>
     
     <div id ="about" class="notVisible">
-    	<p>You are on <span id="pnum">About page cuz</span></p>
+        <div class="contentEditing">
+    	<div id="Title2"><h1>About page</h1></div>
+    	<div id="Body2"><p><code>This site is about creating you blog, its programmed in java script, html, and with some cs. The server runs on nodejs, and the SPA is just routing done through filling the inner html based on what the URL is at.&nbsp;</code></p><p><code><br></code></p><p><code>To get started you can create a account which takes like a second, then head over to write your own blog post, and then just write whatever you intend to write and give some tags related to that field. You can double click or highlight your text in the editor for options, or hit the + symbol that shows up for a different set of options. You can paste in images and gifs as well.</code></p><p><code><br></code></p><p><code>Posts have tags when you view them, a title, and a unique id. They belong to a user as well and can be liked as well. You can go to your profile page to edit your posts or even remove them. You can also view them there. Clicking on the categories button will pull up tags, the tags you click on will display a grid of posts with that tag. High rated blogs will hold the best liked blogs for that week.<br></code></p><p><br></p><p><code>Glhf&nbsp;</code></p> <br> <code><p>Made by Chris Czerwinski and Karan Kotwal</p></code></div>
+        </div>
+        <ul id="taggers" class="tags" style="padding-top: 40px !important; margin: 0 auto; width:30%"><li class="tag">#AboutPage</li><li class="tag">#gettingstarted</li></ul>
     </div>
     
      <div id ="educational" class="notVisible">
@@ -255,10 +242,24 @@
     	<p>You are on <span id="pnum">Search page cuz</span></p>
     </div>
     
+    <div id ="profile" class="notVisible">
+        <div id="myProfile">
+            <p>You are on profile page cuz</p>
+        </div>
+    </div>
     
     <div id ="innerPost" class="notVisible">
-         <p>We are in a specific post</p>
+        <div class = "contentEditing">
+             <h1>Loading Post..</h1>
+        </div>
     </div>
+    
+    <div id="profileView" class="notVisible">
+        <div class = "otherProfile">
+            
+        </div>
+    </div>
+    
     <div class="modal" id="myModal">
     <div class="modal-content" id="modcontent">
     

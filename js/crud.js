@@ -24,13 +24,13 @@ var showReg = function() {
     var logincontainer = document.getElementById('logincontainer');
     document.getElementById("reg-status").innerHTML = ("");
     var nameField = document.getElementById("name");
-    nameField.value = "";
+    nameField.innerHTML = "";
     var emailField = document.getElementById("email")
-    emailField.value = "";
+    emailField.innerHTML = "";
     var passField = document.getElementById("password")
-    passField.value = "";
+    passField.innerHTML = "";
     var comPassField = document.getElementById("repeat-password")
-    comPassField.value = "";
+    comPassField.innerHTML = "";
     logincontainer.classList.add('active'); 
 }
 
@@ -40,9 +40,9 @@ var showLogin = function() {
     var logincontainer = document.getElementById('logincontainer');
     document.getElementById("login-status").innerHTML = ("");
     var emailField = document.getElementById("login-email");
-    emailField.value = "";
+    emailField.innerHTML = "";
     var passField = document.getElementById("login-password");
-    passField.value = "";
+    passField.innerHTML = "";
     logincontainer.classList.remove('active');
 }
 

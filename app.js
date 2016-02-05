@@ -73,5 +73,13 @@ app.get('/post/:id', function(req, res) {
    res.sendFile(__dirname + '/index.html'); 
 });
 
+app.get('/profile', function(req, res) {
+   res.sendFile(__dirname + '/index.html');
+});
+
+app.get('/profile/:id', function(req, res) {
+   res.sendFile(__dirname + '/index.html');
+});
+
 
 app.use(express.static(__dirname +'/'));

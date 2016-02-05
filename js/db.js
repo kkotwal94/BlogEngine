@@ -6,18 +6,41 @@ var generalNav = document.getElementById("loge");
 var modal = document.getElementById('myModal');
 var removedLoginNav = null;
 var addedLogoutNav = null;
-var blogdata = [];
-var userData;
+var blogdata;
+var userDatum;
+//var userData;
 
 var blogref = new Firebase("https://scorching-heat-6412.firebaseio.com/blogs");
+var userRef = new Firebase("https://scorching-heat-6412.firebaseio.com/users");
 
 
 blogref.on("value", function(snapshot) {
   blogdata = snapshot.val();
-  console.log(blogdata);
+  //console.log(blogdata);
   createDashboardFeed();
 }, function (errorObject) {
   console.log("The read failed: " + errorObject.code);
+});
+
+
+userRef.on("value", function(snapshot) {
+    userDatum = snapshot.val();
+    //console.log(userDatum);
+    //console.log(userData);
+    var myName = document.getElementById("myName");
+    var myPosts = document.getElementById("myPosts");
+    
+    for(var key in userDatum) {
+                if(key == userData.uid) {
+                    myName.innerHTML = userDatum[key].full_name;
+                    myPosts.innerHTML = userDatum[key].posts;
+                }
+            }
+    console.log("getting user data");
+    },
+    function(errorObject) {
+        console.log("Error here : " + errorObject.code);
+    
 });
 
 
@@ -35,22 +58,58 @@ blogref.on("value", function(snapshot) {
 
 }*/
 
+
+var getSingleProfileData = function(id, whoseProfile) {
+    if(whoseProfile == "mine") {
+        
+        var myProfile = document.getElementById('profile');
+    } else {
+        var myProfile = document.getElementById('profileView');
+    }
+    userRef.orderByKey().equalTo(id).on("child_added", function(snapshot) {
+       console.log(snapshot.val()); 
+    });
+    
+}
+
 var getSinglePostData = function(id) {
     //console.log(id);
     var innerPost = document.getElementById('container');
     blogref.orderByKey().equalTo(id).on("child_added", function(snapshot) {
        console.log(snapshot.val()); 
        
+       var tags = snapshot.val().tags_included;
+       
        innerPost.innerHTML = null;
+       var outerDiv = document.createElement('DIV');
+       outerDiv.className = "contentEditing";
        
        var title = document.createElement('DIV');
        title.innerHTML = snapshot.val().title_blog;
+       title.id = "Title";
        
        var body = document.createElement('DIV');
        body.innerHTML = snapshot.val().blog_content;
+       body.id = "Body";
        
-       innerPost.appendChild(title);
-       innerPost.appendChild(body);
+       
+       var taglist = document.createElement('UL');
+       taglist.id = "taggers";
+       taglist.className = "tags viewtag";
+       
+       for(var i = 0; i < tags.length; i++) {
+           var li = document.createElement('LI');
+           var textNode = document.createTextNode(tags[i]);
+           li.appendChild(textNode);
+           li.className = "tag";
+           taglist.appendChild(li);
+           
+       }
+       outerDiv.appendChild(title);
+       outerDiv.appendChild(body);
+       outerDiv.appendChild(taglist);
+       
+       innerPost.appendChild(outerDiv);
     });
 }
 
@@ -65,8 +124,8 @@ var createDashboardFeed = function() {
     var feedElement = document.getElementById("feed");
     feedElement.innerHTML = "";
     var data = blogdata;
-    console.log("In dashboard feed");
-    console.log(data);
+    //console.log("In dashboard feed");
+    //console.log(data);
     for(var key in data) {
         var title =strip(data[key].title_blog);
         var author =data[key].user_id.password.email;
@@ -120,7 +179,7 @@ var createDashboardFeed = function() {
                
                var fakeURL = ev.target.getAttribute('href');
                console.log("Fake URL: " + fakeURL);
-               changePageTo(fakeURL);
+               changePagesTo(fakeURL);
             });
 
             actionBar.appendChild(shareButton);
@@ -150,6 +209,9 @@ var getHTTP = function(theUrl){
 
 var loginCallback = function(error, authData) {
         var loginStatus = document.getElementById("login-status");
+        var creatingStory = document.getElementById("creatingStory");
+        var myName = document.getElementById("myName");
+        var myPosts = document.getElementById("myPosts");
         if (error) {
                 loginStatus.innerHTML = ("Login Failed!: ", error);
                 console.log(authData);
@@ -158,12 +220,27 @@ var loginCallback = function(error, authData) {
             
             updatingNav();
             modal.style.display = "none";
+            creatingStory.style.display="block";
+            
+            //console.log(userData);
+            //console.log(userDatum);
+            
+            for(var key in userDatum) {
+                if(key == userData.uid) {
+                    myName.innerHTML = userDatum[key].full_name;
+                    myPosts.innerHTML = userDatum[key].posts;
+                }
+            }
+            
             //changePageTo("about");
            }
 }
 
 var signupLoginCallback = function(error, authData) {
     var regStatus = document.getElementById("reg-status");
+    var creatingStory = document.getElementById("creatingStory");
+    var myName = document.getElementById("myName");
+        var myPosts = document.getElementById("myPosts");
         if (error) {
             	regStatus.innerHTML = ("Error adding user to db:",error);
         } else {
@@ -171,17 +248,26 @@ var signupLoginCallback = function(error, authData) {
                 addUserName(userData.uid);
                 updatingNav();
                 modal.style.display = "none";
+                creatingStory.style.display="block";
                 //changePageTo("about");
+                for(var key in userDatum) {
+                if(key == userData.uid) {
+                    myName.innerHTML = userDatum[key].full_name;
+                    myPosts.innerHTML = userDatum[key].posts;
+                }
+            }
         }
 }
 
 var logoutButton = function(){
+    var creatingStory = document.getElementById("creatingStory");
         firebaseref.unauth();
         userData = null;
         var regStatus = document.getElementById("reg-status");
         regStatus.innerHTML = ("Successfully logged out!");
         addedLogoutNav.parentNode.removeChild(addedLogoutNav);
         generalNav.insertBefore(removedLoginNav, generalNav.children[generalNav.children.length - 1]);
+        creatingStory.style.display = "none";
     };
 
 
@@ -248,7 +334,11 @@ var addUserName = function(userid) {
         var name = document.getElementById('name').value;
         userRef = new Firebase('https://scorching-heat-6412.firebaseio.com/users/' + userid);
         userRef.set({
-            full_name: name
+            full_name: name,
+            posts: 0,
+	        comments: [],
+	         upvoted: [], //things we liked
+	        saved: [],
         },
 
         function(error) {
@@ -316,7 +406,7 @@ var addBlogPost = function(blogPost, userid, title, tags) { //could either pass 
                
                var fakeURL = ev.target.getAttribute('href');
                console.log("Fake URL: " + fakeURL);
-               changePageTo(fakeURL);
+               changePagesTo(fakeURL);
             });
                 linkText.appendChild(ref);
                 
@@ -365,7 +455,7 @@ var addBlogPost = function(blogPost, userid, title, tags) { //could either pass 
                
                var fakeURL = ev.target.getAttribute('href');
                console.log("Fake URL: " + fakeURL);
-               changePageTo(fakeURL);
+               changePagesTo(fakeURL);
             });
                 linkText.appendChild(ref);
                 
@@ -400,7 +490,7 @@ var setUpFirebaseEvents = function()
     var blogRef = new Firebase('https://scorching-heat-6412.firebaseio.com/users/' + userid +'/blogs/');
     // $("#sharedlist").html(''); //he uses jquery to set a shared list to blank, we can set it to something else
     blogRef.off('child_added', childAddedFunction)
-    blogRed.on("child_added", childAddedFunction);
+    blogRef.on("child_added", childAddedFunction);
 
     blogRef.off('child_changed', childChangedFunction);
     blogRef.on('child_changed', childChangedFunction);
