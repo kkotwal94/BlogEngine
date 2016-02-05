@@ -58,9 +58,11 @@ if(newURL == '/') {
         var myPosts = document.getElementById("myPosts");
         
        for(var key in userDatum) {
+           if(userData!=null){
                 if(key == userData.uid) {
                     myName.innerHTML = userDatum[key].full_name;
                     myPosts.innerHTML = userDatum[key].posts;
+                }
                 }
             }
             
@@ -80,11 +82,13 @@ if(newURL == '/') {
         var myPosts = document.getElementById("myPosts");
         
        for(var key in userDatum) {
+           if(userData!=null){
                 if(key == userData.uid) {
                     myName.innerHTML = userDatum[key].full_name;
                     myPosts.innerHTML = userDatum[key].posts;
                 }
             }
+       }
             createDashboardFeed();
             
   container.innerHTML = load;
